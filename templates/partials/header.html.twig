@@ -1,0 +1,64 @@
+{% block stylesheets %}<link rel="stylesheet" href={{asset('assets/style/header.scss')}}>{% endblock %}
+
+<header>
+
+    <div class="d-flex justify-content-center">
+        <img 
+        src={{ asset('media/logo.jpg') }} 
+        alt="logo"
+        width="15%"
+        class="p-2">
+        </img>
+    </div>
+
+    <nav class="navbar navbar-expand-lg bg-secondary">
+
+        <div class="container-fluid d-flex justify-content-between">
+
+
+
+
+                <a class="navbar-brand" href="#"> 
+                    <img 
+                    src={{ asset('media/accueil.png') }} 
+                    alt="logo" 
+                    width="40rem"></img>
+                </a> 
+
+                <button class="navbar-toggler" 
+                type="button" data-bs-toggle="collapse" 
+                data-bs-target="#navbarSupportedContent" 
+                aria-controls="navbarSupportedContent" 
+                aria-expanded="false" 
+                aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+
+
+            <div class="collapse navbar-collapse flex-grow-0 d-flex justify-content-between" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item ps- pe-">
+                        <a class="nav-link active" aria-current="page" href="#">Home</a>
+                    </li>
+                    <li class="nav-item ps- pe-">
+                        <a class="nav-link active" aria-current="page" href="#">Home</a>
+                    </li>
+                    <li class="nav-item ps- pe-">
+                        <a class="nav-link" href="#">Link</a>
+                    </li>
+
+                    <li class="nav-item ps- pe-">
+                        <a class="nav-link" aria-disabled="true">Disabled</a>
+                    </li>
+                </ul>
+
+            </div>
+
+            <div>se connecter</div>
+
+        </div>
+
+    </nav>
+
+    </header>

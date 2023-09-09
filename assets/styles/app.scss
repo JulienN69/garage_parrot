@@ -1,13 +1,5 @@
+@import "./base/_reset.sass";
 @import "./layout/_custom";
 @import "~bootstrap/scss/bootstrap";
-@import "./layout/_header.scss";
-
-body {
-  background-color: rgb(255, 255, 255);
-  font-family: "Nunito", sans-serif;
-}
-
-.navbar_test {
-  margin: auto;
-  flex-grow: 0;
-}
+@import "./layout/_header.sass";
+@import "./layout/_services.sass";

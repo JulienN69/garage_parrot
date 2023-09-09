@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello HomeController!{% endblock %}
+
+
+
+{% block body %}
+
+<section class="container-fluid section-service">
+    <div class="container-fluid text-center p-3 fs-2 bg-white">
+        Bienvenue dans le garage de V.Parrot, faites défilez pour voir nos différents services !
+    </div>
+
+    <div class="section-service__presentation d-flex flex-row justify-content-center m-5">
+        <p class="section-service__presentation-text">Lorem, ipsum dolor sit amet consectetur adipisicing elit. 
+            Asperiores distinctio numquam architecto ipsam libero temporibus adipisci 
+            blanditiis fugiat maxime in sit quo deleniti laudantium aspernatur sed,
+            enim sapiente nulla quisquam.
+        </p>
+        <img src={{ asset('media/travail.jpg') }} alt="picture" class="section-service__presentation-image">
+    </div>
+</section>
+
+
+{% endblock %}
+
+
+
+
+
+
+

@@ -1,3 +1,15 @@
 index:
   path: /
   controller: App\Controller\HomeController::index
+
+car:
+  path: /car
+  controller: App\Controller\CarController::index
+
+car_create:
+  path: /car/create
+  controller: App\Controller\CarController::create
+
+car_display:
+  path: /car/{id}
+  controller: App\Controller\CarController::display

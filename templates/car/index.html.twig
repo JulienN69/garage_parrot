@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello CarController!{% endblock %}
+
+{% block body %}
+
+    {% for car in cars %}
+
+        <div class="card" style="width: 18rem;">
+            <div class="card-body">
+            <h5 class="card-title">{{car.modele}}</h5>
+            <h6 class="card-subtitle mb-2 text-muted">Kilomètres : {{car.mileage}} km</h6>
+            <h6 class="card-subtitle mb-2 text-muted">Prix : {{car.price}} €</h6>
+            <a href="#" class="card-link">modifier</a>
+            <a href="#" class="card-link">supprimer</a>
+        </div>
+    </div>
+
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

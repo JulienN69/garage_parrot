@@ -1,0 +1,14 @@
+{{form_start(formCar, {'attr': {'class': 'container p-4'}})}}
+
+    {{form_row(formCar.modele)}}
+
+    <div class="row">
+        <div class="col">
+            {{form_row(formCar.mileage)}}
+        </div>
+        <div class="col">
+            {{form_row(formCar.price)}}
+        </div>
+    </div>
+
+    {{form_end(formCar)}}

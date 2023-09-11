@@ -13,3 +13,11 @@ car_create:
 car_display:
   path: /car/{id}
   controller: App\Controller\CarController::display
+
+car_update:
+  path: /car/{id}/update
+  controller: App\Controller\CarController::update
+
+car_delete:
+  path: /car/{id}/delete
+  controller: App\Controller\CarController::delete

@@ -2,11 +2,12 @@
 
 namespace App\Entity;
 
-use App\Repository\CarRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\CarRepository;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: CarRepository::class)]
 class Car
@@ -26,6 +27,12 @@ class Car
     private ?float $price = null;
 
     #[ORM\Column(length: 50)]
+    #[Assert\NotBlank(message: 'Veuillez saisir une marque')]
+    #[Assert\Length(
+        min: 3,
+        minMessage: 'Le modèle doit contenir au moins {{ limit }} caractères',
+        max: 32, 
+        maxMessage: 'Le modèle ne peut pas dépasser {{ limit }} caractères')]
     private ?string $modele = null;
 
     #[ORM\ManyToMany(targetEntity: Equipment::class, inversedBy: 'cars')]

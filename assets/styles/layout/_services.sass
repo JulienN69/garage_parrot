@@ -7,10 +7,6 @@
     padding-left: 0
     padding-right: 0
 
-    div
-        padding-left: 0
-        padding-right: 0
-
     &__presentation
 
         &-text
@@ -24,11 +20,11 @@
 
 .carousel-container
     max-width: 1400px
-    background-color: rgba(255, 255, 255, 30%)
-    border-radius: 20px
+    background-color: rgba(255, 255, 255, 50%)
+    margin-bottom: 6rem
 
 .carousel-item
-    padding: 2rem
+    padding: 4rem
 
 .cards-wrapper
     display: flex
@@ -41,16 +37,25 @@
     box-shadow: 10px 5px 5px rgba(53, 45, 45, 50%)
 
 .carousel-control-prev, .carousel-control-next
-    background-color: #e1e1e1
+    background-color: #fefefe
     width: 6vh
     height: 6vh
     border-radius: 50%
     top: 50%
     transform: translateY(-50%)
 
+.carousel-container-mobile
+    display: none
+
 
 @media screen and (max-width: 900px) 
     .card:not(:first-child)
+        display: none
+    .card
+        width: 100%
+    .carousel-container-mobile
+        display: block
+    .carousel-container
         display: none
 
 

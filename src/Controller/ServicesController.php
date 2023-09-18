@@ -14,10 +14,11 @@ use Symfony\Component\Routing\Annotation\Route;
 #[Route('/services')]
 class ServicesController extends AbstractController
 {
-    #[Route('/', name: 'app_services_index', methods: ['GET'])]
+    #[Route('/', name: 'app_services_index', priority: 10 ,methods: ['GET'])]
     public function index(ServicesRepository $servicesRepository): Response
     {
         return $this->render('services/index.html.twig', [
+            'controller_name' => 'ServicesController',
             'services' => $servicesRepository->findAll(),
         ]);
     }

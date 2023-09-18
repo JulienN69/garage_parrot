@@ -11,8 +11,8 @@
         Bienvenue dans le garage de V.Parrot, faites défilez pour voir nos différents services !
     </div>
 
-    <div class="section-service__presentation d-flex flex-row justify-content-center m-5">
-        <p class="section-service__presentation-text">Lorem, ipsum dolor sit amet consectetur adipisicing elit. 
+    <div class=" section-service__presentation d-flex flex-row justify-content-center m-5">
+        <p class="section-service__presentation-text align-self-center">Lorem, ipsum dolor sit amet consectetur adipisicing elit. 
             Asperiores distinctio numquam architecto ipsam libero temporibus adipisci 
             blanditiis fugiat maxime in sit quo deleniti laudantium aspernatur sed,
             enim sapiente nulla quisquam.
@@ -20,7 +20,7 @@
         <img src={{ asset('media/travail.jpg') }} alt="picture" class="section-service__presentation-image">
     </div>
 
-{% include 'services/index.html.twig' %}
+{% include 'services/index.html.twig' with {'services': services} %}
 </section>
 
 

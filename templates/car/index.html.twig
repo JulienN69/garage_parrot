@@ -4,20 +4,25 @@
 
 {% block body %}
 
-    {% for car in cars %}
+    <div class="d-flex">
+    
+    
+        {% for car in cars %}
 
-        <div class="card" style="width: 18rem;">
-            <div class="card-body">
-            <h5 class="card-title">{{car.modele}}</h5>
-            <h6 class="card-subtitle mb-2 text-muted">Kilomètres : {{car.mileage}} km</h6>
-            <h6 class="card-subtitle mb-2 text-muted">Prix : {{car.price}} €</h6>
-            <a href="{{ path('car_update', { 'id': car.id}) }}" class="card-link">modifier</a>
-            <a href="{{path('car_delete', {'id':car.id}) }}" class="card-link">supprimer</a>
-            <a href="{{path('car_display', {'id':car.id}) }}" class="card-link">afficher</a>
+            <div class="card" style="width: 18rem;">
+                <div class="card-body">
+                <h5 class="card-title">{{car.modele}}</h5>
+                <h6 class="card-subtitle mb-2 text-muted">Kilomètres : {{car.mileage}} km</h6>
+                <h6 class="card-subtitle mb-2 text-muted">Prix : {{car.price}} €</h6>
+                <a href="{{ path('car_update', { 'id': car.id}) }}" class="card-link">modifier</a>
+                <a href="{{path('car_delete', {'id':car.id}) }}" class="card-link">supprimer</a>
+                <a href="{{path('car_display', {'id':car.id}) }}" class="card-link">afficher</a>
+            </div>
         </div>
-    </div>
 
-    {% endfor %}
+        {% endfor %}
+
+    </div>
 
     <button class='btn btn-primary p-2 m-2'><a href={{path('car_create')}} class='text-white'>Ajouter une voiture</a></button>
   </tbody>

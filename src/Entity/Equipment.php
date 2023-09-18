@@ -62,6 +62,11 @@ class Equipment
         return $this;
     }
 
+    public function __ToString()
+    {
+        return $this->getEquipmentTitle();
+    }
+
     /**
      * @return Collection<int, Car>
      */
@@ -100,4 +105,5 @@ class Equipment
 
         return $this;
     }
+
 }

@@ -4,144 +4,28 @@
 
 {% block body %}
 
-    {# <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>ServiceTitle</th>
-                <th>Description</th>
-                <th>Price</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for service in services %}
-            <tr>
-                <td>{{ service.id }}</td>
-                <td>{{ service.serviceTitle }}</td>
-                <td>{{ service.description }}</td>
-                <td>{{ service.price }}</td>
-                <td>
-                    <a href="{{ path('app_services_show', {'id': service.id}) }}">show</a>
-                    <a href="{{ path('app_services_edit', {'id': service.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="5">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-
-    <a href="{{ path('app_services_new') }}">Create new</a> #}
-
 <div class="container-fluid carousel-container">
     <div id="carouselExampleControls" class="carousel slide carousel-dark d-none d-sm-block" data-bs-ride="carousel">
         <div class="carousel-inner">
-            <div class="carousel-item active">
-                <div class="cards-wrapper">
-                        <div class="card" >
-                            <div class="image-wrapper">
-                                <img src={{asset('media/travail.jpg')}} alt="...">
-                            </div>
-                            <div class="card-body">
-                                <h5 class="card-title">Card title</h5>
-                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                <a href="#" class="btn btn-primary">Go somewhere</a>
-                            </div>
-                        </div>
-                        <div class="card">
-                            <div class="image-wrapper">
-                                <img src={{asset('media/travail.jpg')}} alt="...">
-                            </div>
-                            <div class="card-body">
-                                <h5 class="card-title">Card title</h5>
-                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                <a href="#" class="btn btn-primary">Go somewhere</a>
-                            </div>
-                        </div>
-                        <div class="card">
-                            <div class="image-wrapper">
-                                <img src={{asset('media/travail.jpg')}} alt="...">
-                            </div>
-                            <div class="card-body">
-                                <h5 class="card-title">Card title</h5>
-                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                <a href="#" class="btn btn-primary">Go somewhere</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="carousel-item">
+            {% for batch_services in services|batch(3) %}
+                <div class="carousel-item{% if loop.first %} active{% endif %}">
                     <div class="cards-wrapper">
-                        <div class="card">
-                            <div class="image-wrapper">
-                                <img src={{asset('media/travail.jpg')}} alt="...">
+                        {% for service in batch_services %}
+                            <div class="card">
+                                <div class="image-wrapper">
+                                    <img src="{{ asset('media/travail.jpg') }}" alt="...">
+                                </div>
+                                <div class="card-body">
+                                    <h5 class="card-title">{{ service.serviceTitle }}</h5>
+                                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                    <a href="#" class="btn btn-primary">Go somewhere</a>
+                                </div>
                             </div>
-                            <div class="card-body">
-                                <h5 class="card-title">Card title</h5>
-                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                <a href="#" class="btn btn-primary">Go somewhere</a>
-                            </div>
-                        </div>
-                        <div class="card">
-                            <div class="image-wrapper">
-                                <img src={{asset('media/travail.jpg')}} alt="...">
-                            </div>
-                            <div class="card-body">
-                                <h5 class="card-title">Card title</h5>
-                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                <a href="#" class="btn btn-primary">Go somewhere</a>
-                            </div>
-                        </div>
-                        <div class="card">
-                            <div class="image-wrapper">
-                                <img src={{asset('media/travail.jpg')}} alt="...">
-                            </div>
-                            <div class="card-body">
-                                <h5 class="card-title">Card title</h5>
-                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                <a href="#" class="btn btn-primary">Go somewhere</a>
-                            </div>
-                        </div>
+                        {% endfor %}
                     </div>
                 </div>
-                <div class="carousel-item">
-                    <div class="cards-wrapper">
-                        <div class="card">
-                            <div class="image-wrapper">
-                                <img src={{asset('media/travail.jpg')}} alt="...">
-                            </div>
-                            <div class="card-body">
-                                <h5 class="card-title">Card title</h5>
-                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                <a href="#" class="btn btn-primary">Go somewhere</a>
-                            </div>
-                        </div>
-                        <div class="card">
-                            <div class="image-wrapper">
-                                <img src={{asset('media/travail.jpg')}} alt="...">
-                            </div>
-                            <div class="card-body">
-                                <h5 class="card-title">Card title</h5>
-                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                <a href="#" class="btn btn-primary">Go somewhere</a>
-                            </div>
-                        </div>
-                        <div class="card">
-                            <div class="image-wrapper">
-                                <img src={{asset('media/travail.jpg')}} alt="...">
-                            </div>
-                            <div class="card-body">
-                                <h5 class="card-title">Card title</h5>
-                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                <a href="#" class="btn btn-primary">Go somewhere</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            {% endfor %}
+
             <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                 <span class="visually-hidden">Previous</span>
@@ -155,55 +39,35 @@
 </div>
     
 
-<div id="carouselExampleControls" class="carousel slide d-sm-none" data-bs-ride="carousel">
-    <div class="carousel-inner">
-
-        <div class="carousel-item active">
-            <div class="card" >
-                <div class="image-wrapper">
-                    <img src={{asset('media/travail.jpg')}} alt="...">
-                </div>
-                <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    <a href="#" class="btn btn-primary">Go somewhere</a>
-                </div>
-            </div>
-        </div>
-
-        <div class="carousel-item">
-            <div class="card" >
-                <div class="image-wrapper">
-                    <img src={{asset('media/travail.jpg')}} alt="...">
-                </div>
-                <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    <a href="#" class="btn btn-primary">Go somewhere</a>
-                </div>
-            </div>
-        </div>  
-            <div class="carousel-item">
-                <div class="card" >
-                    <div class="image-wrapper">
-                        <img src={{asset('media/travail.jpg')}} alt="...">
-                    </div>
-                    <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                        <a href="#" class="btn btn-primary">Go somewhere</a>
+<div class="container-fluid carousel-container-mobile">
+    <div id="carouselExampleControls" class="carousel slide carousel-dark d-none d-sm-block" data-bs-ride="carousel">
+            {# {% for serv in services %} #}
+                <div class="carousel-item active">
+                    <div class="cards-wrapper">
+                            <div class="card">
+                                <div class="image-wrapper">
+                                    <img src="{{ asset('media/travail.jpg') }}" alt="...">
+                                </div>
+                                <div class="card-body">
+                                    <h5 class="card-title">titre</h5>
+                                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                    <a href="#" class="btn btn-primary">Go somewhere</a>
+                                </div>
+                            </div>
                     </div>
                 </div>
-            </div>
+            {# {% endfor %} #}
+
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+
     </div>
-    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControlsSmallScreen" data-bs-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Previous</span>
-    </button>
-    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControlsSmallScreen" data-bs-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Next</span>
-    </button>
 </div>
 
 

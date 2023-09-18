@@ -2,6 +2,8 @@ index:
   path: /
   controller: App\Controller\HomeController::index
 
+# ---------------- Routes Car -------------------
+
 car:
   path: /car
   controller: App\Controller\CarController::index
@@ -21,3 +23,25 @@ car_update:
 car_delete:
   path: /car/{id}/delete
   controller: App\Controller\CarController::delete
+
+# ---------------- Routes services -------------------
+
+app_services_index:
+  path: "/services/"
+  controller: App\Controller\ServicesController::index
+
+app_services_new:
+  path: /services/new
+  controller: App\Controller\ServicesController::new
+
+app_services_show:
+  path: /services/{id}
+  controller: App\Controller\ServicesController::show
+
+app_services_edit:
+  path: /services/{id}/edit
+  controller: App\Controller\ServicesController::edit
+
+app_services_delete:
+  path: /services/{id}
+  controller: App\Controller\ServicesController::delete

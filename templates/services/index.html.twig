@@ -1,7 +1,5 @@
 
 
-{% block title %}Services index{% endblock %}
-
 {% block body %}
 
 <div class="container-fluid carousel-container">
@@ -12,13 +10,17 @@
                     <div class="cards-wrapper">
                         {% for service in batch_services %}
                             <div class="card">
+                                <h5 class="card-title card__title">{{ service.serviceTitle }}</h5>
                                 <div class="image-wrapper">
-                                    <img src="{{ asset('media/travail.jpg') }}" alt="...">
+                                    <img src="{{ asset('images/' ~ service.imageName ) }}" alt="...">
                                 </div>
-                                <div class="card-body">
-                                    <h5 class="card-title">{{ service.serviceTitle }}</h5>
-                                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                    <a href="#" class="btn btn-primary">Go somewhere</a>
+                                <div class="card-body card__body d-flex flex-column justify-content-between">
+                                    <div class="card__description-container">
+                                        <p class="card-text">{{service.description}}</p>
+                                    </div>
+                                    <div class="d-flex justify-content-center">
+                                        <a href="#" class="btn btn-primary">Go somewhere</a>                            
+                                    </div>
                                 </div>
                             </div>
                         {% endfor %}

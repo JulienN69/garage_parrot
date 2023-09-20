@@ -47,8 +47,7 @@ class ServicesFixtures extends Fixture
         $service4->setServiceTitle('Vidange')
             ->setPrice(60)
             ->setDescription('La vidange de votre véhicule permet de vider l\'huile de moteur usée et de la remplacer par de l\'huile neuve.\
-            L\'huile de moteur sert à maintenir tous les rouages ​​internes de votre moteur en bon état de fonctionnement et à l\'abri des dommages. 
-            Elle protège les pièces mobiles du moteur en éliminant les frottements et, se faisant, prolonge leur durée de vie. Pour une dépense relativement faible, la vidange permet d\'optimiser le vieillissement de votre véhicule.');
+            L\'huile de moteur sert à maintenir tous les rouages ​​internes de votre moteur en bon état de fonctionnement et à l\'abri des dommages.');
 
         $manager->persist($service4);
 

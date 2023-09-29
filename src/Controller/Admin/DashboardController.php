@@ -3,8 +3,11 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Car;
+use App\Entity\Users;
+use App\Entity\Reviews;
 use App\Entity\Services;
 use App\Entity\Equipment;
+use App\Entity\Schedules;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
@@ -46,8 +49,11 @@ class DashboardController extends AbstractDashboardController
     public function configureMenuItems(): iterable
     {
         yield MenuItem::linkToDashboard('Dashboard', 'fa fa-home');
-        yield MenuItem::linkToCrud('Services', 'fas fa-list', Services::class);
-        yield MenuItem::linkToCrud('Equipement', 'fas fa-list', Equipment::class);
-        yield MenuItem::linkToCrud('Voiture', 'fas fa-list', Car::class);
+        yield MenuItem::linkToCrud('services', 'fas fa-id-card', Services::class);
+        yield MenuItem::linkToCrud('équipements', 'fas fa-list', Equipment::class);
+        yield MenuItem::linkToCrud('voitures', 'fas fa-car', Car::class);
+        yield MenuItem::linkToCrud('utilisateurs', 'fas fa-user', Users::class);
+        yield MenuItem::linkToCrud('horaires', 'fas fa-history', Schedules::class);
+        yield MenuItem::linkToCrud('avis', 'fas fa-align-center', Reviews::class);
     }
 }

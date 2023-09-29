@@ -66,6 +66,7 @@ class ServicesFixtures extends Fixture
     
             $manager->persist($service5);
 
+            $manager->flush();
 
     }
 }

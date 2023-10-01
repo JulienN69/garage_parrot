@@ -16,10 +16,10 @@ class Schedules
     #[ORM\Column(length: 50)]
     private ?string $day = null;
 
-    #[ORM\Column(length: 50)]
+    #[ORM\Column(length: 50, nullable: true)]
     private ?string $schedules_morning = null;
 
-    #[ORM\Column(length: 50)]
+    #[ORM\Column(length: 50, nullable: true)]
     private ?string $schedules_afternoon = null;
 
     public function getId(): ?int

@@ -45,3 +45,13 @@ app_services_edit:
 app_services_delete:
   path: /services/{id}
   controller: App\Controller\ServicesController::delete
+
+# ---------------- Routes reviews -------------------
+
+app_reviews_index:
+  path: "/reviews/"
+  controller: App\Controller\ReviewsController::index
+
+app_reviews_show:
+  path: "/reviews/{id}"
+  controller: App\Controller\ReviewsController::show

@@ -7,7 +7,7 @@ use App\Entity\Equipment;
 use Doctrine\Persistence\ObjectManager;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 
-require_once 'vendor/autoload.php';
+// require_once 'vendor/autoload.php';
 
 class EquipmentFixtures extends Fixture
 {

@@ -28,3 +28,6 @@ services:
       $schedulesRepository: '@App\Repository\SchedulesRepository'
     tags:
       - { name: kernel.event_listener, event: kernel.controller }
+
+  App\Uploader\CarDirectoryNamer:
+    public: true

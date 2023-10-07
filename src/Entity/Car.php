@@ -41,10 +41,7 @@ class Car
     #[ORM\ManyToMany(targetEntity: Equipment::class, inversedBy: 'cars')]
     private Collection $is_equipped;
 
-    #[ORM\OneToMany(mappedBy: 'car', targetEntity: Equipment::class)]
-    private Collection $car_equipment;
-
-    #[Vich\UploadableField(mapping: 'products', fileNameProperty: 'imageName', size: 'imageSize')]
+    #[Vich\UploadableField(mapping: 'cars', fileNameProperty: 'imageName', size: 'imageSize')]
     private ?File $imageFile = null;
 
     #[ORM\Column(nullable: true)]
@@ -53,10 +50,13 @@ class Car
     #[ORM\Column(nullable: true)]
     private ?int $imageSize = null;
 
+    #[ORM\OneToMany(mappedBy: 'represented_by', targetEntity: CarPictures::class, orphanRemoval: true, cascade: ['persist'])]
+    private Collection $carPictures;
+
     public function __construct()
     {
         $this->is_equipped = new ArrayCollection();
-        $this->car_equipment = new ArrayCollection();
+        $this->carPictures = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -136,36 +136,6 @@ class Car
         return $this;
     }
 
-    /**
-     * @return Collection<int, Equipment>
-     */
-    public function getCarEquipment(): Collection
-    {
-        return $this->car_equipment;
-    }
-
-    public function addCarEquipment(Equipment $carEquipment): static
-    {
-        if (!$this->car_equipment->contains($carEquipment)) {
-            $this->car_equipment->add($carEquipment);
-            $carEquipment->setCar($this);
-        }
-
-        return $this;
-    }
-
-    public function removeCarEquipment(Equipment $carEquipment): static
-    {
-        if ($this->car_equipment->removeElement($carEquipment)) {
-            // set the owning side to null (unless already changed)
-            if ($carEquipment->getCar() === $this) {
-                $carEquipment->setCar(null);
-            }
-        }
-
-        return $this;
-    }
-
     public function setImageFile(?File $imageFile = null): void
     {
         $this->imageFile = $imageFile;
@@ -194,6 +164,36 @@ class Car
     public function getImageSize(): ?int
     {
         return $this->imageSize;
+    }
+
+    /**
+     * @return Collection<int, CarPictures>
+     */
+    public function getCarPictures(): Collection
+    {
+        return $this->carPictures;
+    }
+
+    public function addCarPicture(CarPictures $carPicture): static
+    {
+        if (!$this->carPictures->contains($carPicture)) {
+            $this->carPictures->add($carPicture);
+            $carPicture->setRepresentedBy($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCarPicture(CarPictures $carPicture): static
+    {
+        if ($this->carPictures->removeElement($carPicture)) {
+            // set the owning side to null (unless already changed)
+            if ($carPicture->getRepresentedBy() === $this) {
+                $carPicture->setRepresentedBy(null);
+            }
+        }
+
+        return $this;
     }
 
 }

@@ -25,8 +25,8 @@ class Equipment
     #[ORM\ManyToMany(targetEntity: Car::class, mappedBy: 'is_equipped')]
     private Collection $cars;
 
-    #[ORM\ManyToOne(inversedBy: 'car_equipment')]
-    private ?Car $car = null;
+    // #[ORM\ManyToOne(inversedBy: 'car_equipment')]
+    // private ?Car $car = null;
 
     public function __construct()
     {
@@ -94,16 +94,16 @@ class Equipment
         return $this;
     }
 
-    public function getCar(): ?Car
-    {
-        return $this->car;
-    }
+    // public function getCar(): ?Car
+    // {
+    //     return $this->car;
+    // }
 
-    public function setCar(?Car $car): static
-    {
-        $this->car = $car;
+    // public function setCar(?Car $car): static
+    // {
+    //     $this->car = $car;
 
-        return $this;
-    }
+    //     return $this;
+    // }
 
 }

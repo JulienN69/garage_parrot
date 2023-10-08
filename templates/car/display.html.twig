@@ -18,5 +18,11 @@
             </tr>
         </tbody>
     </table>
+{% for equipment in car.getIsEquipped() %}
+    {{ equipment.equipmentTitle }}
+{% endfor %}
+
+
+                    {# {{ dump(car) }} #}
 
 {% endblock %}

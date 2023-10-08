@@ -18,6 +18,3 @@ vich_uploader:
       # inject_on_load: false
       # delete_on_update: true
       # delete_on_remove: true
-      # directory_namer:
-      #   service: vich_uploader.namer_directory_property
-      #   options: { property: "id", transliterate: true }

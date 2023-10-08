@@ -15,9 +15,6 @@
                 <h6 class="card-subtitle mb-2 text-muted">Kilomètres : {{car.mileage}} km</h6>
                 <h6 class="card-subtitle mb-2 text-muted">Prix : {{car.price}} €</h6>
                 <a href="{{path('car_display', {'id':car.id}) }}" class="card-link">afficher</a>
-                 {% for equipment in car.car_equipment %}
-                <h6>{{equipment.equipment_title}}</h6>
-                {% endfor %}
             </div>
         </div>
 

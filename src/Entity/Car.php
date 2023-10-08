@@ -41,7 +41,7 @@ class Car
     #[ORM\ManyToMany(targetEntity: Equipment::class, inversedBy: 'cars')]
     private Collection $is_equipped;
 
-    #[Vich\UploadableField(mapping: 'cars', fileNameProperty: 'imageName', size: 'imageSize')]
+    #[Vich\UploadableField(mapping: 'products', fileNameProperty: 'imageName', size: 'imageSize')]
     private ?File $imageFile = null;
 
     #[ORM\Column(nullable: true)]

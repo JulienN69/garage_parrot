@@ -39,12 +39,12 @@ class CarCrudController extends AbstractCrudController
             'years' => range(1980, date('Y')),
         ]);
 
-        yield TextareaField::new('imageFile')->setFormType(VichImageType::class)->hideOnIndex();
-        yield ImageField::new('imageName')->setBasePath('/images')->hideOnForm();
+        yield TextareaField::new('imageFile')->setFormType(VichImageType::class)->hideOnIndex()->setLabel('photo principale');
+        yield ImageField::new('imageName')->setBasePath('/images')->hideOnForm()->setLabel('photo principale');
 
         yield AssociationField::new('is_equipped')->setLabel('équipements');
 
-        yield CollectionField::new('carPictures', 'images')
+        yield CollectionField::new('carPictures', 'autres photos')
         ->setEntryType(CarImageType::class);
 
     }

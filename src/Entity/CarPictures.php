@@ -16,7 +16,7 @@ class CarPictures
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255, nullable:true)]
     private ?string $picture_name = null;
 
     #[ORM\Column]
@@ -45,7 +45,7 @@ class CarPictures
         return $this->picture_name;
     }
 
-    public function setPictureName(string $picture_name): static
+    public function setPictureName(string $picture_name = null): static
     {
         $this->picture_name = $picture_name;
 
@@ -57,7 +57,7 @@ class CarPictures
         return $this->picture_size;
     }
 
-    public function setPictureSize(int $picture_size): static
+    public function setPictureSize(int $picture_size = null): static
     {
         $this->picture_size = $picture_size;
 

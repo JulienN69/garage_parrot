@@ -4,9 +4,11 @@ namespace App\Controller\Admin;
 
 use App\Entity\Car;
 use App\Form\Type\CarImageType;
+use App\Uploader\CarDirectoryNamer;
 use Doctrine\Common\Collections\Collection;
 use Vich\UploaderBundle\Form\Type\VichFileType;
 use Vich\UploaderBundle\Form\Type\VichImageType;
+use Vich\UploaderBundle\Mapping\PropertyMapping;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\DateField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
@@ -40,7 +42,26 @@ class CarCrudController extends AbstractCrudController
         ]);
 
         yield TextareaField::new('imageFile')->setFormType(VichImageType::class)->hideOnIndex()->setLabel('photo principale');
-        yield ImageField::new('imageName')->setBasePath('/images')->hideOnForm()->setLabel('photo principale');
+        yield ImageField::new('imageName')
+        ->formatValue(function ($value, $entity) {
+            if ($entity instanceof Car) {
+                $imageName = $entity->getImageName();
+    
+                if ($imageName) {
+                    $directoryNamer = new CarDirectoryNamer();                    
+                    $directory = $directoryNamer->directoryName($entity, null);
+    
+                    if ($directory) {
+                        return '/images/cars/' . $directory . '/' . $imageName;
+                    }
+                }
+            }
+    
+            return '/images/autres';
+        })
+            ->setBasePath('/images/cars/')
+            ->hideOnForm()
+            ->setLabel('photo principale');
 
         yield AssociationField::new('is_equipped')->setLabel('équipements');
 

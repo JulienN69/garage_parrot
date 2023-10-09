@@ -9,7 +9,7 @@ use Vich\UploaderBundle\Naming\DirectoryNamerInterface;
 
 class CarDirectoryNamer implements DirectoryNamerInterface
 {
-    public function directoryName($object, PropertyMapping $mapping): string
+    public function directoryName($object, PropertyMapping $mapping = null): string
     {
         if ($object instanceof CarPictures) {
             $car = $object->getRepresentedBy();

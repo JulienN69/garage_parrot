@@ -41,7 +41,7 @@ class Car
     #[ORM\ManyToMany(targetEntity: Equipment::class, inversedBy: 'cars')]
     private Collection $is_equipped;
 
-    #[Vich\UploadableField(mapping: 'products', fileNameProperty: 'imageName', size: 'imageSize')]
+    #[Vich\UploadableField(mapping: 'cars', fileNameProperty: 'imageName', size: 'imageSize')]
     private ?File $imageFile = null;
 
     #[ORM\Column(nullable: true)]
@@ -49,6 +49,9 @@ class Car
 
     #[ORM\Column(nullable: true)]
     private ?int $imageSize = null;
+
+    #[ORM\Column(nullable: true)]
+    private ?\DateTimeImmutable $updated_at = null;
 
     #[ORM\OneToMany(mappedBy: 'represented_by', targetEntity: CarPictures::class, orphanRemoval: true, cascade: ['persist'])]
     private Collection $carPictures;
@@ -139,6 +142,10 @@ class Car
     public function setImageFile(?File $imageFile = null): void
     {
         $this->imageFile = $imageFile;
+
+        if (null !== $imageFile) {
+            $this->updated_at = new \DateTimeImmutable();
+        }
     }
 
     public function getImageFile(): ?File
@@ -164,6 +171,18 @@ class Car
     public function getImageSize(): ?int
     {
         return $this->imageSize;
+    }
+
+    public function getUpdatedAt(): ?\DateTimeImmutable
+    {
+        return $this->updated_at;
+    }
+
+    public function setUpdatedAt(?\DateTimeImmutable $updated_at): static
+    {
+        $this->updated_at = $updated_at;
+
+        return $this;
     }
 
     /**
@@ -195,5 +214,7 @@ class Car
 
         return $this;
     }
+
+
 
 }

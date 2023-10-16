@@ -29,7 +29,13 @@
           {% for schedule in schedules %}
             <li class="container-footer__schedules-li">
               <span class="container-footer__schedules-li-day">{{schedule.day}} :</span>
-              <span class="container-footer__schedules-li-time">{{schedule.getSchedulesMorning}} | {{schedule.getSchedulesAfternoon}}</span>
+              <span class="container-footer__schedules-li-time">
+              {{schedule.getSchedulesMorning}}
+              {% if schedule.getSchedulesAfternoon is defined %}
+              | {{ schedule.getSchedulesAfternoon }}
+              {% else %} 
+              {% endif %}
+              </span>
             </li>
           {% endfor %}
           </ul>

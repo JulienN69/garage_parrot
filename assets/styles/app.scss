@@ -4,3 +4,9 @@
 @import "./layout/_header.sass";
 @import "./layout/_services.sass";
 @import "./layout/_footer.sass";
+@import "./layout/_car.sass";
+@import "~@fontsource-variable/nunito";
+
+body {
+  font-family: "Nunito", sans-serif;
+}

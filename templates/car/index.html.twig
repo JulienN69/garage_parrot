@@ -4,23 +4,288 @@
 
 {% block body %}
 
-    <div class="d-flex">
-    
-    
-        {% for car in cars %}
+<main>
 
-            <div class="card" style="width: 18rem;">
-                <div class="card-body">
-                <h5 class="card-title">{{car.modele}}</h5>
-                <h6 class="card-subtitle mb-2 text-muted">Kilomètres : {{car.mileage}} km</h6>
-                <h6 class="card-subtitle mb-2 text-muted">Prix : {{car.price}} €</h6>
-                <a href="{{path('car_display', {'id':car.id}) }}" class="card-link">afficher</a>
+{# ------------------------------titre -------------------------- #}
+
+    <section class="py-2 text-center container">
+        <div class="row py-lg-5">
+            <div class="col-lg-6 col-md-8 mx-auto">
+                <h1 class="fw-light">Nos voitures d'occasion</h1>
+                                
+{# --------------------modal------------------------- #}
+
+                {# <div class="modalButton">
+                    <p class="d-inline-flex gap-1">
+                        <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                            Button with data-bs-target
+                        </button>
+                    </p>
+                </div>    
+                <div class="collapse" id="collapseExample">
+
+                    <div class="d-flex align-items-center">
+                        <h3 class="text-uppercase">Filtres</h3>
+                        <a href="#" class="link-opacity-25-hover text-decoration-none container-car__filter-a">Tout effacer</a>
+                    </div>
+                    <div class="border bg-success m-3"></div> 
+                    
+                    <div class="mb-3">
+                        <h2 class="text-uppercase font-weight-bold">prix</h2>    
+                        <div class="filter-button py-4">
+                            <div class="values">
+                                <span id="sliderPrice1Value">0</span>
+                                <span id="sliderPrice2Value">100000</span>
+                            </div>
+                            <div class="filter-button__slider" id="filterButtonSliderPrice"></div>
+                            <input 
+                                type="range" 
+                                step="500" 
+                                min="0" 
+                                max="100000"
+                                value="0"  
+                                class="filter-button__input" 
+                                id="sliderPrice1">
+                            <input 
+                                type="range" 
+                                step="500" 
+                                min="0" 
+                                max="100000"
+                                value="100000"  
+                                class="filter-button__input" 
+                                id="sliderPrice2">
+                        </div>
+                    </div>
+                        <div class="border bg-success m-3"></div>
+                        <h2 class="text-uppercase font-weight-bold">kilométrage</h2>
+                        <div class="filter-button py-4">
+                            <div class="values">
+                                <span id="sliderMiles1Value">0</span>
+                                <span id="sliderMiles2Value">200000</span>
+                            </div>
+                            <div class="filter-button__slider" id="filterButtonSliderMiles"></div>
+                            <input 
+                                type="range" 
+                                step="500" 
+                                min="0" 
+                                max="200000" 
+                                value="0" 
+                                class="filter-button__input" 
+                                id="sliderMiles1">
+                            <input 
+                                type="range" 
+                                step="500" 
+                                min="0" 
+                                max="200000" 
+                                value="200000" 
+                                class="filter-button__input" 
+                                id="sliderMiles2">
+                        </div>
+                        <div class="border bg-success m-3"></div>
+                        <h2 class="text-uppercase font-weight-bold">année</h2>
+                        <div class="filter-button py-4 d-flex justify-content-between">           
+                            <input 
+                                type="number"
+                                min="1980" 
+                                max="2023"
+                                placeholder="Année min"
+                                class="filter-button__input-number form-control m-1" 
+                                id="inputYear1"
+                                inputmode="numeric">
+                            <input 
+                                type="number" 
+                                min="1980" 
+                                max="2023" 
+                                placeholder ="Année max"
+                                class="filter-button__input-number form-control m-1" 
+                                id="inputYear2"
+                                inputmode="numeric">
+                        </div>
+                        <div class="border bg-success m-3"></div>
+                        <h4 class="text-uppercase font-weight-bold">énergie</h4>
+                        <div class="filter-button py-4 d-flex flex-column">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="checkInput1">
+                                <label class="form-check-label" for="checkInput1">
+                                    Diesel
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="checkInput2">
+                                <label class="form-check-label" for="checkInput2">
+                                    Essence
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="checkInput3">
+                                <label class="form-check-label" for="checkInput3">
+                                    Electrique
+                                </label>
+                            </div>
+                        </div> #}
+{# -------------------- fin modal------------------------- #}
+            </div>
+        </div>
+    </section>
+
+{# --------------------------- section car and filter ----------------------------- #}
+
+<section class="container-xxl container-car">
+    <div class="row container-car__filter test">
+
+        <div class="col-xxl-3 col-md-4 col-sm-0 container-car__filter-div1">
+            <div class="d-flex align-items-center">
+                <h3 class="text-uppercase">Filtres</h3>
+                <a href="#" class="link-opacity-25-hover text-decoration-none container-car__filter-a">Tout effacer</a>
+            </div>
+
+            <div class="border bg-success m-3"></div> 
+            
+            <div class="mb-3">
+                <h2 class="text-uppercase font-weight-bold">prix</h2>    
+                <div class="filter-button py-4">
+                    <div class="values">
+                        <span id="spanPrice1">0</span>
+                        <span id="spanPrice2">100000</span>
+                    </div>
+                    <div class="filter-button__slider" id="filterButtonSliderPrice"></div>
+                    <input 
+                        type="range" 
+                        step="500" 
+                        min="0" 
+                        max="100000"
+                        value="0"  
+                        class="filter-button__input" 
+                        id="sliderPrice1">
+                    <input 
+                        type="range" 
+                        step="500" 
+                        min="0" 
+                        max="100000"
+                        value="100000"  
+                        class="filter-button__input" 
+                        id="sliderPrice2">
+                </div>
+            </div>
+
+            <div class="border bg-success m-3"></div>
+
+            <h2 class="text-uppercase font-weight-bold">kilométrage</h2>
+            <div class="filter-button py-4">
+                <div class="values">
+                    <span id="spanMiles1">0</span>
+                    <span id="spanMiles2">200000</span>
+                </div>
+                <div class="filter-button__slider" id="filterButtonSliderMiles"></div>
+                <input 
+                    type="range" 
+                    step="500" 
+                    min="0" 
+                    max="200000" 
+                    value="0" 
+                    class="filter-button__input" 
+                    id="sliderMiles1">
+                <input 
+                    type="range" 
+                    step="500" 
+                    min="0" 
+                    max="200000" 
+                    value="200000" 
+                    class="filter-button__input" 
+                    id="sliderMiles2">
+            </div>
+
+            <div class="border bg-success m-3"></div>
+
+            <h2 class="text-uppercase font-weight-bold">année</h2>
+            <div class="filter-button py-4 d-flex justify-content-between">           
+                <input 
+                    type="number"
+                    min="1980" 
+                    max="2023"
+                    placeholder="Année min"
+                    class="filter-button__input-number form-control m-1" 
+                    id="inputYear1"
+                    inputmode="numeric">
+                <input 
+                    type="number" 
+                    min="1980" 
+                    max="2023" 
+                    placeholder ="Année max"
+                    class="filter-button__input-number form-control m-1" 
+                    id="inputYear2"
+                    inputmode="numeric">
+            </div>
+
+            <div class="border bg-success m-3"></div>
+
+            <h4 class="text-uppercase font-weight-bold">énergie</h4>
+            <div class="filter-button py-4 d-flex flex-column">
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="checkInput1">
+                    <label class="form-check-label" for="checkInput1">
+                        Diesel
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="checkInput2">
+                    <label class="form-check-label" for="checkInput2">
+                        Essence
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="checkInput3">
+                    <label class="form-check-label" for="checkInput3">
+                        Electrique
+                    </label>
+                </div>
             </div>
         </div>
 
-        {% endfor %}
+{# ------------------ Car cards ------------------------ #}
 
+        <div class="col-xxl-9 col-md-8 col-sm-10 container">
+            <div class="row">
+
+                {% for car in cars %}
+                {% set imagePath = imagePaths[car.id] %}
+                    <div class="card mb-4 container-card">
+
+                        <img src="{{imagePath}}" 
+                            class="card-img-top container-card__image" 
+                            alt={{ car.imageName }}>
+
+                        <div class="card-body border border-black border-top-0 pb-0">
+                            <h4 class="card-title text-uppercase font-weight-bold font-2">{{car.modele}}</h4>
+                        
+                            <ul class="list-group list-group-flush">
+                                <li class="">{{car.mileage|number_format(0, '.', ' ')}} km</li>
+                                <li class="">diesel</li>
+                                <li class=" border-0 d-flex justify-content-between">
+                                    <span>{{ car.dateCreation | date('Y') }}</span>
+                                    <button 
+                                        type="button" 
+                                        href="{{path('car_display', {'id':car.id}) }}" 
+                                        class=" btn btn-success mb-2">+ d'infos
+                                    </button>
+                                </li>
+                            </ul>
+                            <span class="border border-dark d-block w-100"></span>
+                            <h5 class="mt-2">{{car.price|number_format(0, '.', ' ')}} €</h5>
+
+                            <button 
+                                type='button' 
+                                href="#" 
+                                class=" text-uppercase d-flex mx-auto btn btn-primary m-2">Contact
+                            </button>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
     </div>
-  </tbody>
-</table>
+</section>
+
+</main>
+
 {% endblock %}

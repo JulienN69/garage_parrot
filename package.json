@@ -22,6 +22,8 @@
         "build": "encore production --progress"
     },
     "dependencies": {
+        "@fontsource-variable/nunito": "^5.0.14",
+        "@fontsource/nunito": "^5.0.13",
         "bootstrap": "^5.3.1"
     }
 }

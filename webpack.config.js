@@ -1,5 +1,7 @@
 const Encore = require("@symfony/webpack-encore");
 
+const path = require("path");
+
 // Manually configure the runtime environment if not already configured yet by the "encore" command.
 // It's useful when you use tools that rely on webpack.config.js file.
 if (!Encore.isRuntimeEnvironmentConfigured()) {
@@ -54,19 +56,40 @@ Encore
   })
 
   // enables Sass/SCSS support
-  .enableSassLoader();
+  .enableSassLoader()
 
-// uncomment if you use TypeScript
-//.enableTypeScriptLoader()
+  // uncomment if you use TypeScript
+  //.enableTypeScriptLoader()
 
-// uncomment if you use React
-//.enableReactPreset()
+  // uncomment if you use React
+  //.enableReactPreset()
 
-// uncomment to get integrity="..." attributes on your script & link tags
-// requires WebpackEncoreBundle 1.4 or higher
-//.enableIntegrityHashes(Encore.isProduction())
+  // uncomment to get integrity="..." attributes on your script & link tags
+  // requires WebpackEncoreBundle 1.4 or higher
+  //.enableIntegrityHashes(Encore.isProduction())
 
-// uncomment if you're having problems with a jQuery plugin
-//.autoProvidejQuery()
+  // uncomment if you're having problems with a jQuery plugin
+  //.autoProvidejQuery()
+  .splitEntryChunks()
+  .cleanupOutputBeforeBuild()
+  .enableBuildNotifications()
+  .enableSourceMaps(!Encore.isProduction())
+  .enableVersioning(Encore.isProduction())
+
+  .configureDevServerOptions((options) => {
+    options.server = {
+      type: "https",
+      options: {
+        pfx: path.join(process.env.HOME, ".symfony5/certs/default.p12"),
+      },
+    };
+    options.liveReload = true;
+    options.static = {
+      watch: false,
+    };
+    options.watchFiles = {
+      paths: ["src/**/*.php", "templates/**/*"],
+    };
+  });
 
 module.exports = Encore.getWebpackConfig();

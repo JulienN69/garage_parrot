@@ -37,6 +37,9 @@
         margin-right: 0.5rem
     
     &-div1
+        display: block
+        position: sticky
+        top: 20px
         @media screen and (max-width: 768px)
             display: none
     &-a
@@ -116,6 +119,11 @@ input[type="range"]
     bottom: 0
     background-color: transparent
     pointer-events: none
+
+input[type="number"] 
+    -webkit-appearance: number-input
+    -moz-appearance: number-input
+    appearance: number-input
 
 .values
     display: flex

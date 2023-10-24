@@ -1,14 +1,99 @@
-{{form_start(formCar, {'attr': {'class': 'container p-4'}})}}
+{{ form_start(form, {'attr': {
+    'class': 'col-xxl-3 col-md-4 col-sm-0 container-car__filter-div1 js-filter-form',
+    'id':'form-car'
+}}) }}
 
-    {{form_row(formCar.modele)}}
 
-    <div class="row">
-        <div class="col">
-            {{form_row(formCar.mileage)}}
-        </div>
-        <div class="col">
-            {{form_row(formCar.price)}}
-        </div>
-    </div>
+{# <div class="col-xxl-3 col-md-4 col-sm-0 container-car__filter-div1"> #}
+            <div class="d-flex align-items-center">
+                <h3 class="text-uppercase">Filtres</h3>
+                <a href="#" id="reset-button" class="link-opacity-25-hover text-decoration-none container-car__filter-a">Tout effacer</a>
+            </div>
 
-    {{form_end(formCar)}}
+            <div class="border bg-success m-3"></div> 
+            
+            <div class="mb-3">
+                <h2 class="text-uppercase font-weight-bold">prix</h2>    
+                <div class="filter-button py-4">
+                    <div class="values">
+                        <span id="spanPrice1">0</span>
+                        <span id="spanPrice2">150000</span>
+                    </div>
+                    <div class="filter-button__slider" id="filterButtonSliderPrice"></div>
+                   {{ form_widget(form.priceMin) }}
+      
+                    {{ form_widget(form.priceMax) }}
+   
+                </div>
+            </div>
+
+            <div class="border bg-success m-3"></div>
+
+            <h2 class="text-uppercase font-weight-bold">kilométrage</h2>
+            <div class="filter-button py-4">
+                <div class="values">
+                    <span id="spanMiles1">0</span>
+                    <span id="spanMiles2">{{ form.vars.value.milesMax|number_format(0, ',', ' ') }} €</span>
+
+                </div>
+                <div class="filter-button__slider" id="filterButtonSliderMiles"></div>
+                {{ form_widget(form.milesMin) }}
+   
+                {{ form_widget(form.milesMax) }}
+
+            </div>
+
+            <div class="border bg-success m-3"></div>
+
+            <h2 class="text-uppercase font-weight-bold">année</h2>
+            <div class="filter-button py-4 d-flex justify-content-between"> 
+
+            {{ form_widget(form.yearMin, {
+                'attr': {
+                    'min': '1980',
+                    'max': '2023',
+                    'placeholder': 'Année min',
+                    'class': 'filter-button__input-number form-control m-1 text-body-secondary fst-italic',
+                    'id': 'inputYear1',
+                    }
+                }) 
+            }}
+            {{ form_widget(form.yearMax, {
+                'attr': {
+                    'min': '1980',
+                    'max': '2023',
+                    'placeholder': 'Année max',
+                    'class': 'filter-button__input-number form-control m-1 text-body-secondary fst-italic',
+                    'id': 'inputYear2',
+                 }
+                }) 
+            }}
+            </div>
+
+            <div class="border bg-success m-3"></div>
+
+            <h4 class="text-uppercase font-weight-bold">énergie</h4>
+            <div class="filter-button py-4 d-flex flex-column">
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="checkInput1">
+                    <label class="form-check-label" for="checkInput1">
+                        Diesel
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="checkInput2">
+                    <label class="form-check-label" for="checkInput2">
+                        Essence
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="checkInput3">
+                    <label class="form-check-label" for="checkInput3">
+                        Electrique
+                    </label>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary w-100">filtrer</button>
+        {# </div> #}
+
+    {{form_end(form)}}

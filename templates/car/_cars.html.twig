@@ -1,0 +1,41 @@
+
+
+    {% for car in cars %}
+    {% set imagePath = imagePaths[car.id] %}
+
+    <div class="card mb-4 container-card">
+
+        <img src="{{imagePath}}" 
+            class="card-img-top container-card__image" 
+            alt={{ car.imageName }}>
+
+        <div class="card-body border border-black border-top-0 pb-0">
+            <h4 class="card-title text-uppercase font-weight-bold font-2">{{car.modele}}</h4>
+        
+            <ul class="list-group list-group-flush">
+                <li class="">{{car.mileage|number_format(0, '.', ' ')}} km</li>
+                <li class="">diesel</li>
+                <li class=" border-0 d-flex justify-content-between">
+                    <span>{{ car.dateCreation | date('Y') }}</span>
+                    <button 
+                        type="button" 
+                        href="{{path('car_display', {'id':car.id}) }}" 
+                        class=" btn btn-success mb-2">+ d'infos
+                    </button>
+                </li>
+            </ul>
+            <span class="border border-dark d-block w-100"></span>
+            <h5 class="mt-2">{{car.price|number_format(0, '.', ' ')}} €</h5>
+
+            <button 
+                type='button' 
+                href="#" 
+                class=" text-uppercase d-flex mx-auto btn btn-primary m-2">Contact
+            </button>
+        </div>
+    </div>
+
+    {% endfor %}
+
+
+

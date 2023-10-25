@@ -18,7 +18,6 @@ window.onload = function () {
   sliderTrackPrice.style.background = "#dd2424";
   sliderTrackMiles.style.background = "#dd2424";
 };
-
 // --------- Recovering DOM elements --------------
 
 let inputPrice1 = document.getElementById("search_car_form_priceMin");
@@ -116,3 +115,23 @@ resetButton.addEventListener("click", () => {
   carFilterForm.reset();
   carFilterForm.submit();
 });
+
+// --------------------- Modal -------------------------
+
+function changeScriptInModal() {
+  if (window.innerWidth <= 768) {
+    const modalButton = document.querySelector(".modalButton");
+    modalButton.addEventListener("click", () => {
+      carFilterForm.style.display = "block";
+    });
+    carFilterForm.classList.add("collapse show");
+    carFilterForm.id = "collapseExample";
+  } else {
+    carFilterForm.classList.remove("collapse", "show");
+    carFilterForm.id = "form-car";
+  }
+}
+
+window.addEventListener("resize", changeScriptInModal);
+
+changeScriptInModal();

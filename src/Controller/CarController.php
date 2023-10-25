@@ -55,9 +55,28 @@ class CarController extends AbstractController
     // <----------------------- READ --------------------------->
 
     #[Route('/car/{id}', name: 'car_display', methods:['GET'], requirements:['id'=>'\d+'])]
-    public function display(CarRepository $carRepository,int $id): Response
+    public function display(CarDirectoryNamer $directoryNamer, CarRepository $carRepository,int $id): Response
     {
+
+        $car = $carRepository->find($id);
+        if (!$car) {
+            return var_dump('cette voiture existe pas');
+        }
+
+        $carPictures = $car->getCarPictures();
+
+        $imageNames = [];
+        foreach ($carPictures as $carPicture) {
+            $imageNames[] = $carPicture->getPictureName();
+        }
+                            
+        $directory = $directoryNamer->directoryName($car, null);
+        $id = $car->getId();
+        $imagePath = '/images/cars/' . $directory . '/';
+
         return $this->render('car/display.html.twig', [
+            'imagePath' => $imagePath,
+            'imageNames' => $imageNames,
             'car' => ($carRepository->find($id))
         ]);
     }

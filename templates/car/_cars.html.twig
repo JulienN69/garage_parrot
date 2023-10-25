@@ -17,11 +17,11 @@
                 <li class="">diesel</li>
                 <li class=" border-0 d-flex justify-content-between">
                     <span>{{ car.dateCreation | date('Y') }}</span>
-                    <button 
+                    <a 
                         type="button" 
-                        href="{{path('car_display', {'id':car.id}) }}" 
+                        href="{{ path('car_display', {'id': car.id}) }}" 
                         class=" btn btn-success mb-2">+ d'infos
-                    </button>
+                    </a>
                 </li>
             </ul>
             <span class="border border-dark d-block w-100"></span>

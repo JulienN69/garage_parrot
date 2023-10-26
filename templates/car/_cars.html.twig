@@ -27,11 +27,11 @@
             <span class="border border-dark d-block w-100"></span>
             <h5 class="mt-2">{{car.price|number_format(0, '.', ' ')}} €</h5>
 
-            <button 
+            <a 
                 type='button' 
-                href="#" 
+                href={{ path('app_contact', {'getModele': car.modele }) }}
                 class=" text-uppercase d-flex mx-auto btn btn-primary m-2">Contact
-            </button>
+            </a>
         </div>
     </div>
 

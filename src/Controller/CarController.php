@@ -2,11 +2,8 @@
 
 namespace App\Controller;
 
-use App\Entity\Car;
-use App\Form\CarType;
 use App\Data\SearchCarData;
 use App\Form\SearchCarForm;
-use Doctrine\ORM\EntityManager;
 use App\Repository\CarRepository;
 use App\Uploader\CarDirectoryNamer;
 use Symfony\Component\HttpFoundation\Request;
@@ -57,6 +54,7 @@ class CarController extends AbstractController
     #[Route('/car/{id}', name: 'car_display', methods:['GET'], requirements:['id'=>'\d+'])]
     public function display(CarDirectoryNamer $directoryNamer, CarRepository $carRepository,int $id): Response
     {
+       
 
         $car = $carRepository->find($id);
         if (!$car) {
@@ -77,7 +75,7 @@ class CarController extends AbstractController
         return $this->render('car/display.html.twig', [
             'imagePath' => $imagePath,
             'imageNames' => $imageNames,
-            'car' => ($carRepository->find($id))
+            'car' => ($carRepository->find($id)),
         ]);
     }
     

@@ -1,0 +1,58 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello ContactController!{% endblock %}
+
+{% block body %}
+<div class="container d-flex justify-content-center">
+
+    <div class="row bg-warning m-4 p-4 form-contact d-flex flex-column justify-content-between">
+        <h3 class="text-center form-contact_title">Contactez-nous</h3>
+
+        {% form_theme form 'bootstrap_5_layout.html.twig' %}
+
+        {{ form_start(form, {'attr': {
+        
+        }}) }}
+
+        <div class="d-flex flex-row justify-content-between mb-3">
+            {{ form_row(form.first_name, {
+                'label': 'prénom',
+                'row_attr': {'class': 'form-contact_name-div'},
+                'attr': {'class': 'form-contact_name-input'}}) 
+                }}
+            {{ form_row(form.last_name, {
+                'label': 'nom',
+                'row_attr': {'class': 'form-contact_name-div'},
+                'attr': {'class': 'form-contact_name-input'}}) 
+                }}
+        </div>
+
+        {{ form_row(form.email)}}
+        {{ form_row(form.phone)}}
+        {{ form_row(form.message_title)}}
+        {{ form_row(form.message_content)}}
+
+
+       
+        <div class="d-flex justify-content-start">
+            <input type="checkbox" name="checkbox-contact" class="me-2">
+            <label for="checkbox-contact" class="fs-6 fw-lighter">En cochant cette case, j'accepte les conditions particulières ci-dessous**</label>
+        </div>
+        <div class="d-flex justify-content-center">
+            <button type="submit" class="btn btn-primary ft-2 text-uppercase form-contact_button">Envoyer</button>        
+        </div>
+         {{ form_end(form) }}
+        <p>
+            **Les informations recueillies sur ce formulaire sont enregistrées dans un fichier 
+            informatisé par le Garage V.Parrot dans le but de vous contacter. Elles sont conservées 
+            pendant une semaine et sont destinées au Garage V.Parrot exclusivement. Conformément à 
+            la loi «RGPD », vous pouvez exercer votre droit d’accès aux données vous concernant et 
+            les faire rectifier en contactant : Garage V.Parrot, 245 avenue Jean Moulin 98256 New-York 
+            sur Loire.
+        </p>
+    </div>
+
+</div>
+
+
+{% endblock %}

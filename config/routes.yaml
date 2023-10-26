@@ -43,3 +43,12 @@ app_reviews_index:
 app_reviews_show:
   path: "/reviews/{id}"
   controller: App\Controller\ReviewsController::show
+
+# ------------------- Routes contact---------------
+
+app_contact:
+  path: /contact
+  methods: ["GET"]
+  requirements:
+    getModele: '\w+'
+  controller: App\Controller\ContactController::index

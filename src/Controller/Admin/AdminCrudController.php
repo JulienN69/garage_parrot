@@ -3,15 +3,15 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Admin;
-use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasher;
-use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
-use EasyCorp\Bundle\EasyAdminBundle\Config\{Action, Actions, Crud, KeyValueStore};
-use EasyCorp\Bundle\EasyAdminBundle\Context\AdminContext;
-use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Dto\EntityDto;
-use EasyCorp\Bundle\EasyAdminBundle\Field\{ChoiceField, IdField, EmailField, TextField};
-use Symfony\Component\Form\Extension\Core\Type\{PasswordType, RepeatedType};
+use EasyCorp\Bundle\EasyAdminBundle\Context\AdminContext;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasher;
+use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Form\{FormBuilderInterface, FormEvent, FormEvents};
+use Symfony\Component\Form\Extension\Core\Type\{PasswordType, RepeatedType};
+use EasyCorp\Bundle\EasyAdminBundle\Config\{Action, Actions, Crud, KeyValueStore};
+use EasyCorp\Bundle\EasyAdminBundle\Field\{ChoiceField, IdField, EmailField, TextField};
 
 
 class AdminCrudController extends AbstractCrudController
@@ -36,6 +36,8 @@ class AdminCrudController extends AbstractCrudController
         $fields = [
             IdField::new('id')->hideOnForm(),
             EmailField::new('email'),
+            TextField::new('first_name'),
+            TextField::new('last_name'),
         ];
 
         $password = TextField::new('password')

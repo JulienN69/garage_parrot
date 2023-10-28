@@ -3,11 +3,14 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Car;
-use App\Entity\Users;
+use App\Entity\User;
+use App\Entity\Admin;
+use App\Entity\Contact;
 use App\Entity\Reviews;
 use App\Entity\Services;
 use App\Entity\Equipment;
 use App\Entity\Schedules;
+use Symfony\Component\Security\Core\Security;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
@@ -40,6 +43,13 @@ class DashboardController extends AbstractDashboardController
         return $this->render('admin/dashboard.html.twig');
     }
 
+    private $security;
+
+    public function __construct(Security $security)
+    {
+        $this->security = $security;
+    }
+
     public function configureDashboard(): Dashboard
     {
         return Dashboard::new()
@@ -48,12 +58,20 @@ class DashboardController extends AbstractDashboardController
 
     public function configureMenuItems(): iterable
     {
+        // if ($this->security->isGranted('ROLE_ADMIN')) {
+        //     yield MenuItem::linkToCrud('services', 'fas fa-id-card', Services::class);
+        //     yield MenuItem::linkToCrud('utilisateurs', 'fas fa-user', User::class);
+        //     yield MenuItem::linkToCrud('horaires', 'fas fa-history', Schedules::class);
+        // }
         yield MenuItem::linkToDashboard('Dashboard', 'fa fa-home');
-        yield MenuItem::linkToCrud('services', 'fas fa-id-card', Services::class);
         yield MenuItem::linkToCrud('équipements', 'fas fa-list', Equipment::class);
         yield MenuItem::linkToCrud('voitures', 'fas fa-car', Car::class);
-        yield MenuItem::linkToCrud('utilisateurs', 'fas fa-user', Users::class);
-        yield MenuItem::linkToCrud('horaires', 'fas fa-history', Schedules::class);
         yield MenuItem::linkToCrud('avis', 'fas fa-align-center', Reviews::class);
+        yield MenuItem::linkToCrud('contact', 'fa fa-envelope-open', Contact::class);
+        yield MenuItem::linkToCrud('services', 'fas fa-id-card', Services::class);
+        yield MenuItem::linkToCrud('utilisateurs', 'fas fa-user', Admin::class);
+        yield MenuItem::linkToCrud('horaires', 'fas fa-history', Schedules::class);
+        yield MenuItem::linkToCrud('test', 'fas fa-history', User::class);
+
     }
 }

@@ -11,7 +11,7 @@
         Bienvenue dans le garage de V.Parrot, faites défilez pour voir nos différents services !
     </div>
 
-    <div class=" section-service__presentation d-flex flex-row justify-content-center m-5">
+    <div class=" section-service__presentation m-5">
         <p class="section-service__presentation-text align-self-center">Lorem, ipsum dolor sit amet consectetur adipisicing elit. 
             Asperiores distinctio numquam architecto ipsam libero temporibus adipisci 
             blanditiis fugiat maxime in sit quo deleniti laudantium aspernatur sed,
@@ -21,11 +21,18 @@
     </div>
 
 {% include 'services/index.html.twig' with {'services': services} %}
+
 </section>
+
+{% include 'reviews/index.html.twig' with {'reviews': reviews, 'calculatedDays': calculatedDays } %}
 
 
 {% endblock %}
 
+
+{% block javascripts %}
+<script src="{{ asset('build/main.js') }}"></script>
+{% endblock %}
 
 
 

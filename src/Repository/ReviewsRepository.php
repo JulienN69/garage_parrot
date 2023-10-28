@@ -3,6 +3,9 @@
 namespace App\Repository;
 
 use App\Entity\Reviews;
+use DateInterval;
+use DateTime;
+use DateTimeImmutable;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -19,6 +22,13 @@ class ReviewsRepository extends ServiceEntityRepository
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Reviews::class);
+    }
+
+    public function calculateDays(DateTimeImmutable $dateTimeImmutable): DateInterval
+    {
+        $currentDate = new dateTime;
+        $timeBetweenDate = date_diff($currentDate, $dateTimeImmutable);
+        return $timeBetweenDate;
     }
 
 //    /**

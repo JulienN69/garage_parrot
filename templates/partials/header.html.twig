@@ -39,9 +39,18 @@
                     <li class="nav-item header__li">
                         <a class="nav-link" href={{path('app_contact')}}>contact</a>
                     </li>
+                    {% if is_granted('ROLE_USER') %}
+                    <li class="nav-item header__li">
+                        <a class="nav-link" href={{path('admin')}}>admin</a>
+                    </li>
+                    {% endif %}
                 </ul>
             </div>
         </div>
+
+
+
+
     </nav>
 
 {# </header> #}

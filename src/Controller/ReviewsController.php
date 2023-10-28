@@ -17,8 +17,17 @@ class ReviewsController extends AbstractController
     #[Route('/', name: 'app_reviews_index', methods: ['GET'])]
     public function index(ReviewsRepository $reviewsRepository): Response
     {
+        $reviews = $reviewsRepository->findAll();
+        $calculatedDays = [];
+        foreach ($reviews as $review) {
+            $date = $review->getUpdatedAt();
+            $days = $reviewsRepository->calculateDays($date)->format('%a');
+            $calculatedDays[$review->getId()] = $days;
+        }
+        
         return $this->render('reviews/index.html.twig', [
             'reviews' => $reviewsRepository->findAll(),
+            'calculatedDays' => $calculatedDays
         ]);
     }
 
@@ -42,15 +51,34 @@ class ReviewsController extends AbstractController
         ]);
     }
 
-
-    #[Route('/{id}', name: 'app_reviews_delete', methods: ['POST'])]
-    public function delete(Request $request, Reviews $review, EntityManagerInterface $entityManager): Response
+    #[Route('/show', name: 'app_reviews_show', methods: ['GET'])]
+    public function show(ReviewsRepository $reviewsRepository, Request $request, EntityManagerInterface $entityManager): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$review->getId(), $request->request->get('_token'))) {
-            $entityManager->remove($review);
-            $entityManager->flush();
+        $reviews = $reviewsRepository->findAll();
+        $calculatedDays = [];
+        foreach ($reviews as $review) {
+            $date = $review->getUpdatedAt();
+            $days = $reviewsRepository->calculateDays($date)->format('%a');
+            $calculatedDays[$review->getId()] = $days;
         }
 
-        return $this->redirectToRoute('app_reviews_index', [], Response::HTTP_SEE_OTHER);
+        $review = new Reviews();
+        $form = $this->createForm(ReviewsType::class, $review);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $entityManager->persist($review);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('app_home', [], Response::HTTP_SEE_OTHER);
+        }
+        
+        return $this->render('reviews/show.html.twig', [
+            'reviews' => $reviewsRepository->findAll(),
+            'calculatedDays' => $calculatedDays,
+            'review' => $review,
+            'form' => $form->createView(),
+        ]);
     }
+
 }

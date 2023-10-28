@@ -2,8 +2,10 @@
 
 namespace App\Entity;
 
+use DateTimeImmutable;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\ReviewsRepository;
+use DateTime;
 use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: ReviewsRepository::class)]
@@ -22,6 +24,9 @@ class Reviews
 
     #[ORM\Column(length: 255)]
     private ?string $comment = null;
+
+    #[ORM\Column(nullable: true)]
+    private ?DateTimeImmutable $updated_at = null;
 
     #[ORM\Column]
     #[Assert\Range(
@@ -79,6 +84,18 @@ class Reviews
     public function setNote(int $note): static
     {
         $this->note = $note;
+
+        return $this;
+    }
+
+    public function getUpdatedAt(): ?\DateTimeImmutable
+    {
+        return $this->updated_at;
+    }
+
+    public function setUpdatedAt(?\DateTimeImmutable $updated_at): static
+    {
+        $this->updated_at = $updated_at;
 
         return $this;
     }

@@ -8,26 +8,72 @@
     padding-right: 0
 
     &__presentation
+        display: flex
+        flex-direction: row
+        justify-content: space-between
+
+        @media screen and (max-width: 992px)
+            display: flex
+            flex-direction: column
+            justify-content: center
 
         &-text
             width: 50%
             color: white
             font-size: 3rem
+            text-align: center
+            @media screen and (max-width: 1400px) 
+                font-size: 2rem
+            @media screen and (max-width: 992px)
+                width: 80%
+            @media screen and (max-width: 576px) 
+                font-size: 1,5rem
 
         img
-            width: 40%
+            width: 50%
             object-fit: scale-down
+            align-self: center
+            @media screen and (max-width: 992px)
+                width: 80%
 
 .carousel-container
     max-width: 1400px
     background-color: rgba(255, 255, 255, 50%)
     margin-bottom: 6rem
+    @media screen and (max-width: 1200px)
+        display: none
+    &-medium-screen
+        display: none
+        @media screen and (max-width: 1200px)
+            display: block
+            max-width: 1400px
+            background-color: rgba(255, 255, 255, 50%)
+            margin-bottom: 6rem
+        @media screen and (max-width: 768px)
+            display: none
+    &-small-screen
+        display: none
+        @media screen and (max-width: 768px)
+            display: block
+            max-width: 1400px
+            background-color: rgba(255, 255, 255, 50%)
+            margin-bottom: 6rem
+
+
 
 .carousel-item
     padding: 4rem
+    @media screen and (max-width: 1200px)
+        width: 100%
+    @media screen and (max-width: 768px)
+        width: 100%
 
 .cards-wrapper
     display: flex
+    @media screen and (max-width: 1200px)
+        width: 100%
+    @media screen and (max-width: 768px)
+        width: 100%
 
 .card
     margin: 0 1.5rem
@@ -35,6 +81,11 @@
     height: 30rem
     border: 50px
     box-shadow: 10px 5px 5px rgba(53, 45, 45, 50%)
+    @media screen and (max-width: 1200px)
+        width: 50%
+    @media screen and (max-width: 768px)
+        width: 100%
+        height: 38rem
 
     &__title
         position: absolute
@@ -46,15 +97,29 @@
         text-align: center
         font-size: 2rem
         font-weight: bold
+        @media screen and (max-width: 768px)
+            font-size: 3rem
+        @media screen and (max-width: 576px)
+            font-size: 2rem
 
     &__description-container
         overflow: hidden
         text-overflow: ellipsis
         height: 50%
         margin: 0.5rem
+        @media screen and (max-width: 1200px)
+            font-size: 1rem
+        @media screen and (max-width: 768px)
+            font-size: 1.2rem
 
     &__body
         height: 10rem
+        div
+            a
+                @media screen and (max-width: 768px)
+                    font-size: 1.4rem
+                @media screen and (max-width: 1200px)
+                    font-size: 1.5rem
 
 
 .carousel-control-prev, .carousel-control-next
@@ -65,19 +130,18 @@
     top: 50%
     transform: translateY(-50%)
 
-.carousel-container-mobile
-    display: none
+// .carousel-container-mobile
+//     display: none
 
-
-@media screen and (max-width: 900px) 
-    .card:not(:first-child)
-        display: none
-    .card
-        width: 100%
-    .carousel-container-mobile
-        display: block
-    .carousel-container
-        display: none
+//     @media screen and (max-width: 900px) 
+//         .card:not(:first-child)
+//             display: none
+//         .card
+//             width: 100%
+//         .carousel-container-mobile
+//             display: block
+//         .carousel-container
+//             display: none
 
 
 .image-wrapper 

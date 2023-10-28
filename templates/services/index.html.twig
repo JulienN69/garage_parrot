@@ -2,8 +2,14 @@
 
 {% block body %}
 
+{# ---------------- carousel large screen --------------------  #}
+
 <div class="container-fluid carousel-container">
-    <div id="carouselExampleControls" class="carousel slide carousel-dark d-none d-sm-block" data-bs-ride="carousel">
+    <div 
+    id="carouselLarge" 
+    class="carousel slide carousel-dark d-none d-sm-block" 
+    data-bs-ride="carousel"
+    >
         <div class="carousel-inner">
             {% for batch_services in services|batch(3) %}
                 <div class="carousel-item{% if loop.first %} active{% endif %}">
@@ -39,26 +45,38 @@
         </div>
     </div>
 </div>
-    
 
-<div class="container-fluid carousel-container-mobile">
-    <div id="carouselExampleControls" class="carousel slide carousel-dark d-none d-sm-block" data-bs-ride="carousel">
-            {# {% for serv in services %} #}
-                <div class="carousel-item active">
+{# ---------------- carousel medium screen --------------------  #}
+
+<div class="container-fluid carousel-container-medium-screen">
+    <div 
+    id="carouselMedium" 
+    class="carousel slide carousel-dark d-none d-sm-block" 
+    data-bs-ride="carousel"
+    >
+        <div class="carousel-inner">
+            {% for batch_services in services|batch(2) %}
+                <div class="carousel-item{% if loop.first %} active{% endif %}">
                     <div class="cards-wrapper">
+                        {% for service in batch_services %}
                             <div class="card">
+                                <h5 class="card-title card__title">{{ service.serviceTitle }}</h5>
                                 <div class="image-wrapper">
-                                    <img src="{{ asset('media/travail.jpg') }}" alt="...">
+                                    <img src="{{ asset('images/' ~ service.imageName ) }}" alt="...">
                                 </div>
-                                <div class="card-body">
-                                    <h5 class="card-title">titre</h5>
-                                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                    <a href="#" class="btn btn-primary">Go somewhere</a>
+                                <div class="card-body card__body d-flex flex-column justify-content-between">
+                                    <div class="card__description-container">
+                                        <p class="card-text">{{service.description}}</p>
+                                    </div>
+                                    <div class="d-flex justify-content-center">
+                                        <a href="#" class="btn btn-primary">Go somewhere</a>                            
+                                    </div>
                                 </div>
                             </div>
+                        {% endfor %}
                     </div>
                 </div>
-            {# {% endfor %} #}
+            {% endfor %}
 
             <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -68,7 +86,51 @@
                 <span class="carousel-control-next-icon" aria-hidden="true"></span>
                 <span class="visually-hidden">Next</span>
             </button>
+        </div>
+    </div>
+</div>
+    
+{# ---------------- carousel small screen --------------------  #}
 
+<div class="container-fluid carousel-container-small-screen">
+    <div 
+    id="carouselSmall" 
+    class="carousel slide carousel-dark d-sm-block" 
+    data-bs-ride="carousel"
+    >
+        <div class="carousel-inner">
+            {% for batch_services in services|batch(1) %}
+                <div class="carousel-item{% if loop.first %} active{% endif %}">
+                    <div class="cards-wrapper">
+                        {% for service in batch_services %}
+                            <div class="card">
+                                <h5 class="card-title card__title">{{ service.serviceTitle }}</h5>
+                                <div class="image-wrapper">
+                                    <img src="{{ asset('images/' ~ service.imageName ) }}" alt="...">
+                                </div>
+                                <div class="card-body card__body d-flex flex-column justify-content-between">
+                                    <div class="card__description-container">
+                                        <p class="card-text">{{service.description}}</p>
+                                    </div>
+                                    <div class="d-flex justify-content-center">
+                                        <a href="#" class="btn btn-primary">Go somewhere</a>                            
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            {% endfor %}
+
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
     </div>
 </div>
 

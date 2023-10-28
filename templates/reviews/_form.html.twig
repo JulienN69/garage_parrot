@@ -1,4 +1,16 @@
-{{ form_start(form) }}
-    {{ form_widget(form) }}
-    <button class="btn">{{ button_label|default('Save') }}</button>
-{{ form_end(form) }}
+{% form_theme form 'bootstrap_5_layout.html.twig' %}
+
+<div class="container form-reviews">
+    <h3>laissez-nous un commentaire</h3>
+
+    {{ form_start(form) }}
+    {{form_row(form.author)}}
+    {{form_row(form.comment)}}
+    {{form_row(form.note)}}
+
+<button type="submit" class="btn btn-primary fs-4">Envoyer</button>
+<p class="fst-italic">votre commentaire sera publié après validation par nos équipes.</p>
+    {{ form_end(form) }}
+
+
+</div>

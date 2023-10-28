@@ -7,8 +7,11 @@
 
 // any CSS you import will output into a single css file (app.css in this case)
 
-import "./js/car/filter.js";
+// import "./js/main.js";
+// import "./js/car.js";
 
 import "./styles/app.scss";
 
 import "bootstrap";
+
+import "./js/car/filter";

@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use DateTimeImmutable;
 use App\Repository\ReviewsRepository;
 use App\Repository\ServicesRepository;
 use App\Repository\SchedulesRepository;
@@ -24,9 +25,14 @@ class HomeController extends AbstractController
 
         $calculatedDays = [];
         foreach ($reviews as $review) {
+
             $date = $review->getUpdatedAt();
-            $days = $ReviewsRepository->calculateDays($date)->format('%a');
-            $calculatedDays[$review->getId()] = $days;
+
+            if ($date instanceof DateTimeImmutable) {
+                    
+                $days = $ReviewsRepository->calculateDays($date)->format('%a');
+                $calculatedDays[$review->getId()] = $days;
+            }                
         }
 
         return $this->render('home/home.html.twig', [

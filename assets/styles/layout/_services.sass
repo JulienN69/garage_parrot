@@ -1,3 +1,5 @@
+@use '../base/_custom' as color
+    
 .section-service
     background-image: url('../../media/volant.jpg') 
     background-size: cover
@@ -7,10 +9,25 @@
     padding-left: 0
     padding-right: 0
 
+    &__title
+        width: auto
+        max-width: 40rem
+        margin: 1rem auto
+        border-radius: 20px
+        color: color.$primary
+        background-color: white
+        padding: 1rem
+        @media screen and (max-width: 700px) 
+            margin: 1rem 2rem
+        h2
+            margin-bottom: 0
+
     &__presentation
         display: flex
         flex-direction: row
         justify-content: space-between
+        max-width: 1800px
+        margin: 2rem auto
 
         @media screen and (max-width: 992px)
             display: flex
@@ -20,21 +37,35 @@
         &-text
             width: 50%
             color: white
-            font-size: 3rem
+            font-size: 2.5rem
             text-align: center
+            margin: 4rem
+            line-height: 3.3rem
             @media screen and (max-width: 1400px) 
                 font-size: 2rem
+            @media screen and (max-width: 1200px)
+                font-size: 1.8rem
+                line-height: 2.8rem
             @media screen and (max-width: 992px)
                 width: 80%
+                font-size: 2rem
+                line-height: 3rem
             @media screen and (max-width: 576px) 
                 font-size: 1,5rem
 
         img
-            width: 50%
-            object-fit: scale-down
+            width: 40%
             align-self: center
+            border-radius: 50px
+            margin: 4rem
+            @media screen and (max-width: 1200px)
+                width: 80%
             @media screen and (max-width: 992px)
                 width: 80%
+                margin: 2rem
+        
+
+
 
 .carousel-container
     max-width: 1400px
@@ -123,26 +154,12 @@
 
 
 .carousel-control-prev, .carousel-control-next
-    background-color: #fefefe
+    background-color: none
     width: 6vh
     height: 6vh
     border-radius: 50%
     top: 50%
     transform: translateY(-50%)
-
-// .carousel-container-mobile
-//     display: none
-
-//     @media screen and (max-width: 900px) 
-//         .card:not(:first-child)
-//             display: none
-//         .card
-//             width: 100%
-//         .carousel-container-mobile
-//             display: block
-//         .carousel-container
-//             display: none
-
 
 .image-wrapper 
     margin: 0 auto

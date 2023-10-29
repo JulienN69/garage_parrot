@@ -18,21 +18,17 @@ app_services_index:
   path: "/services/"
   controller: App\Controller\ServicesController::index
 
-app_services_new:
-  path: /services/new
-  controller: App\Controller\ServicesController::new
-
-app_services_show:
-  path: /services/{id}
-  controller: App\Controller\ServicesController::show
+app_services_show_all:
+  path: /services/index
+  controller: App\Controller\ServicesController::showall
 
 app_services_edit:
   path: /services/{id}/edit
   controller: App\Controller\ServicesController::edit
 
-app_services_delete:
+app_services_show:
   path: /services/{id}
-  controller: App\Controller\ServicesController::delete
+  controller: App\Controller\ServicesController::show
 
 # ---------------- Routes reviews -------------------
 

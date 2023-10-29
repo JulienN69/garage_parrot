@@ -9,10 +9,12 @@
     <section class ="container-fluid bg-success section-review">
         <div class="d-flex flex-column section-review__container">  
             <h1 class="section-review__title text-center text-uppercase fw-bold p-4">Avis clients</h1>
-            <div class="section-review__container-cards d-flex flex-row justify-content-between">
+            <div class="section-review__container-cards">
 
-                {% for review in reviews|slice(0, 5) %}
-                <div class="section-review__cards d-flex flex-column justify-content-between bg-white col col-md-2">
+                {% set recentReviews = reviews|filter(review => review.isIsApproved())|sort((a, b) => b.getUpdatedAt() <=> a.getUpdatedAt()) %}
+                {% for review in recentReviews|slice(0, 10) %}
+                
+                <div class="section-review__cards d-flex flex-column justify-content-between bg-white">
                     <div class="d-flex flex-column">  
                         <h5 class="section-review__cards-author fw-semibold text-uppercase m-2">{{ review.author }}</h5>
                         <div class="section-review__cards-note d-flex flex-row">    
@@ -30,6 +32,7 @@
                         <p class="fst-italic fw-lighter">Publié il y a {{ calculatedDays[review.getId()] }} jours</p>
                     </div>
                 </div>
+           
                 {% endfor %}
             </div>
                   {% include "reviews/_form.html.twig" %}

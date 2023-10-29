@@ -1,18 +1,33 @@
 @use '../base/_custom' as color
 
 .section-review
-    &__cards
 
     &__container-cards
-        max-width: 1600px
-        margin-bottom: 4rem
-        align-self: center
+        justify-content: center
+        display: grid
+        grid-template-columns: 20% 20% 20% 20% 20%
+        margin: 0 auto
+        max-width: 1800px
+        margin-bottom: 3rem
+        @media screen and (max-width: 1400px)
+            grid-template-columns: 25% 25% 25% 25%
+        @media screen and (max-width: 1400px)
+            grid-template-columns: 33% 33% 33%
+        @media screen and (max-width: 768px)
+            grid-template-columns: 45% 45%
+        @media screen and (max-width: 576px)
+            grid-template-columns: 80%
 
     &__title
         color: color.$primary
 
     &__cards
         height: 18rem
+        margin: 2rem
+        @media screen and (max-width: 1400px)
+            margin: 1.5rem
+        @media screen and (max-width: 900px)
+            margin: 1rem
 
     &__cards-author
         color: color.$primary

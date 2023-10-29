@@ -5,10 +5,10 @@ namespace App\Entity;
 use DateTimeImmutable;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\ReviewsRepository;
-use DateTime;
 use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: ReviewsRepository::class)]
+#[ORM\HasLifecycleCallbacks]
 class Reviews
 {
     #[ORM\Id]
@@ -20,7 +20,7 @@ class Reviews
     private ?string $author = null;
 
     #[ORM\Column]
-    private ?bool $is_approved = null;
+    private ?bool $is_approved = false;
 
     #[ORM\Column(length: 255)]
     private ?string $comment = null;
@@ -86,6 +86,12 @@ class Reviews
         $this->note = $note;
 
         return $this;
+    }
+
+    #[ORM\PrePersist]
+    public function setCreatedAtValue()
+    {
+        $this->updated_at = new \DateTimeImmutable();
     }
 
     public function getUpdatedAt(): ?\DateTimeImmutable

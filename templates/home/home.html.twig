@@ -11,17 +11,34 @@
         Bienvenue dans le garage de V.Parrot, faites défilez pour voir nos différents services !
     </div>
 
-    <div class=" section-service__presentation m-5">
-        <p class="section-service__presentation-text align-self-center">Lorem, ipsum dolor sit amet consectetur adipisicing elit. 
+    <div class=" section-service__presentation">
+        <p class="section-service__presentation-text align-self-center">"Lorem, ipsum dolor sit amet consectetur adipisicing elit. 
             Asperiores distinctio numquam architecto ipsam libero temporibus adipisci 
             blanditiis fugiat maxime in sit quo deleniti laudantium aspernatur sed,
-            enim sapiente nulla quisquam.
+            enim sapiente nulla quisquam."
         </p>
         <img src={{ asset('media/travail.jpg') }} alt="picture" class="section-service__presentation-image">
     </div>
 
+    <div class="text-center section-service__title">
+        <h2 class="fs-2 text-uppercase fw-semibold">réparations et d'entretiens</h2>
+    </div>
+
 {% include 'services/index.html.twig' with {'services': services} %}
 
+</section>
+
+<section class="container-fluid bg-white">
+    <div class="row d-flex justify-content-between used-car">
+        <img src={{ asset('media/voiture_vitrine.jpg') }} alt="images" class="used-car__img">
+        <div class="d-flex flex-column justify-content-center used-car__text-container">
+            <h2 class="m-2">Voitures d'occasions</h2>
+            <p class="m-1 fs-3  text-center">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Molestias asperiores dolor 
+            ipsam placeat incidunt quos, facere voluptatem harum fugit autem aliquid voluptatum maxime vel. 
+            Enim vero ad quisquam quaerat assumenda!</p>
+            <a href={{path('car')}} type="button" class="btn btn-primary m-4 text-uppercase">découvrez nos voitures</a>
+        </div>
+    </div>
 </section>
 
 {% include 'reviews/index.html.twig' with {'reviews': reviews, 'calculatedDays': calculatedDays } %}

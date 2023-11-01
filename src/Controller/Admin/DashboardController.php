@@ -58,20 +58,17 @@ class DashboardController extends AbstractDashboardController
 
     public function configureMenuItems(): iterable
     {
-        // if ($this->security->isGranted('ROLE_ADMIN')) {
-        //     yield MenuItem::linkToCrud('services', 'fas fa-id-card', Services::class);
-        //     yield MenuItem::linkToCrud('utilisateurs', 'fas fa-user', User::class);
-        //     yield MenuItem::linkToCrud('horaires', 'fas fa-history', Schedules::class);
-        // }
+        if ($this->security->isGranted('ROLE_ADMIN')) {
+            yield MenuItem::linkToCrud('services', 'fas fa-id-card', Services::class);
+            yield MenuItem::linkToCrud('admin', 'fas fa-user', Admin::class);
+            yield MenuItem::linkToCrud('horaires', 'fas fa-history', Schedules::class);
+        }
         yield MenuItem::linkToDashboard('Dashboard', 'fa fa-home');
         yield MenuItem::linkToCrud('équipements', 'fas fa-list', Equipment::class);
         yield MenuItem::linkToCrud('voitures', 'fas fa-car', Car::class);
         yield MenuItem::linkToCrud('avis', 'fas fa-align-center', Reviews::class);
         yield MenuItem::linkToCrud('contact', 'fa fa-envelope-open', Contact::class);
-        yield MenuItem::linkToCrud('services', 'fas fa-id-card', Services::class);
-        yield MenuItem::linkToCrud('utilisateurs', 'fas fa-user', Admin::class);
-        yield MenuItem::linkToCrud('horaires', 'fas fa-history', Schedules::class);
-        yield MenuItem::linkToCrud('test', 'fas fa-history', User::class);
+        // yield MenuItem::linkToCrud('utilisateurs', 'fas fa-user', User::class);
 
     }
 }

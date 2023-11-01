@@ -6,6 +6,7 @@ use App\Repository\ServicesRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\File;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: ServicesRepository::class)]
 #[Vich\Uploadable]
@@ -17,6 +18,11 @@ class Services
     private ?int $id = null;
 
     #[Vich\UploadableField(mapping: 'products', fileNameProperty: 'imageName', size: 'imageSize')]
+    #[Assert\File(
+        maxSize: '1920k',
+        mimeTypes: ['jpeg', 'png'],
+        maxSizeMessage :"Le fichier est trop volumineux. La taille maximale autorisée est de 1920 Ko.",
+        mimeTypesMessage:"Les formats autorisés sont jpeg et png.")]
     private ?File $imageFile = null;
 
     #[ORM\Column(nullable: true)]
@@ -26,9 +32,19 @@ class Services
     private ?int $imageSize = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\Length(
+        min: 3,
+        minMessage: 'Le titre doit contenir au moins {{ limit }} caractères',
+        max: 50, 
+        maxMessage: 'Le titre ne peut pas dépasser {{ limit }} caractères')]
     private ?string $serviceTitle = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\Length(
+        min: 3,
+        minMessage: 'La description doit contenir au moins {{ limit }} caractères',
+        max: 255, 
+        maxMessage: 'La description ne peut pas dépasser {{ limit }} caractères')]
     private ?string $description = null;
 
     #[ORM\Column]

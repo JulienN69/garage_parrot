@@ -17,10 +17,20 @@ class Contact
 
     #[ORM\Column(length: 255)]
     #[Assert\NotBlank(message:'veuillez saisir votre nom')]
+    #[Assert\Length(
+        min: 3,
+        minMessage: 'Le nom doit contenir au moins {{ limit }} caractères',
+        max: 50, 
+        maxMessage: 'Le nom ne peut pas dépasser {{ limit }} caractères')]
     private ?string $last_name = null;
 
     #[ORM\Column(length: 255)]
     #[Assert\NotBlank(message:'veuillez saisir votre prénom')]
+    #[Assert\Length(
+        min: 3,
+        minMessage: 'Le prénom doit contenir au moins {{ limit }} caractères',
+        max: 50, 
+        maxMessage: 'Le prénom ne peut pas dépasser {{ limit }} caractères')]
     private ?string $first_name = null;
 
     #[ORM\Column(length: 255)]
@@ -30,15 +40,27 @@ class Contact
 
     #[ORM\Column(length: 255)]
     #[Assert\NotBlank(message:'veuillez saisir un numéro de téléphone')]
-    #[Assert\Regex('^0[1-9]([ .-]?[0-9]{2}){4}$^')]
+    #[Assert\Regex(
+        pattern : '^0[1-9]([ .-]?[0-9]{2}){4}$^',
+        message : "Le numéro de téléphone n'est pas valide")]
     private ?string $phone = null;
 
     #[ORM\Column(length: 255)]
     #[Assert\NotBlank(message:'veuillez saisir un sujet')]
+    #[Assert\Length(
+        min: 3,
+        minMessage: 'Le titre doit contenir au moins {{ limit }} caractères',
+        max: 50, 
+        maxMessage: 'Le titre ne peut pas dépasser {{ limit }} caractères')]
     private ?string $message_title = null;
 
     #[ORM\Column(type: Types::TEXT)]
     #[Assert\NotBlank(message:'veuillez saisir un message')]
+    #[Assert\Length(
+        min: 10,
+        minMessage: 'Le message doit contenir au moins {{ limit }} caractères',
+        max: 1000, 
+        maxMessage: 'Le message ne peut pas dépasser {{ limit }} caractères')]
     private ?string $message_content = null;
 
     public function getId(): ?int

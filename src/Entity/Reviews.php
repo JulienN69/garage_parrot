@@ -17,12 +17,22 @@ class Reviews
     private ?int $id = null;
 
     #[ORM\Column(length: 30)]
+    #[Assert\Length(
+        min: 3,
+        minMessage: 'Le pseudo doit contenir au moins {{ limit }} caractères',
+        max: 30, 
+        maxMessage: 'Le pseudo ne peut pas dépasser {{ limit }} caractères')]
     private ?string $author = null;
 
     #[ORM\Column]
     private ?bool $is_approved = false;
 
     #[ORM\Column(length: 255)]
+    #[Assert\Length(
+        min: 3,
+        minMessage: 'Le commentaire doit contenir au moins {{ limit }} caractères',
+        max: 200, 
+        maxMessage: 'Le commentaire ne peut pas dépasser {{ limit }} caractères')]
     private ?string $comment = null;
 
     #[ORM\Column(nullable: true)]

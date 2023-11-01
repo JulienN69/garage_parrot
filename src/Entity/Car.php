@@ -6,10 +6,10 @@ use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\CarRepository;
 use Doctrine\Common\Collections\Collection;
-use Doctrine\Common\Collections\ArrayCollection;
-use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\HttpFoundation\File\File;
+use Doctrine\Common\Collections\ArrayCollection;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: CarRepository::class)]
 #[Vich\Uploadable]
@@ -21,9 +21,16 @@ class Car
     private ?int $id = null;
 
     #[ORM\Column]
+    #[Assert\Positive(message: 'le chiffre doit être positif')]
+    #[Assert\GreaterThanOrEqual(value: 0, message: 'La valeur doit être supérieure ou égale à 0')]
+    #[Assert\LessThanOrEqual(value: 300000, message: 'La valeur doit être inférieure ou égale à 300000')]
     private ?int $mileage = null;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
+    #[Assert\LessThanOrEqual(
+        value: 'today',
+        message: 'La date doit être antérieure à aujourd\'hui'
+    )]
     private ?\DateTimeInterface $dateCreation = null;
 
     #[ORM\Column]
@@ -34,7 +41,7 @@ class Car
     #[Assert\Length(
         min: 3,
         minMessage: 'Le modèle doit contenir au moins {{ limit }} caractères',
-        max: 32, 
+        max: 50, 
         maxMessage: 'Le modèle ne peut pas dépasser {{ limit }} caractères')]
     private ?string $modele = null;
 
@@ -42,6 +49,11 @@ class Car
     private Collection $is_equipped;
 
     #[Vich\UploadableField(mapping: 'cars', fileNameProperty: 'imageName', size: 'imageSize')]
+    #[Assert\File(
+        maxSize: '1920k',
+        mimeTypes: ['jpeg', 'png'],
+        maxSizeMessage :"Le fichier est trop volumineux. La taille maximale autorisée est de 1920 Ko.",
+        mimeTypesMessage:"Les formats autorisés sont jpeg et png.")]
     private ?File $imageFile = null;
 
     #[ORM\Column(nullable: true)]

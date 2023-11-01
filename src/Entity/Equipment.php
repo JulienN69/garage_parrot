@@ -7,6 +7,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: EquipmentRepository::class)]
 class Equipment
@@ -17,16 +18,23 @@ class Equipment
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\Length(
+        min: 3,
+        minMessage: 'Le modèle doit contenir au moins {{ limit }} caractères',
+        max: 50, 
+        maxMessage: 'Le modèle ne peut pas dépasser {{ limit }} caractères')]
     private ?string $equipmentTitle = null;
 
     #[ORM\Column(type: Types::TEXT, nullable: true)]
+    #[Assert\Length(
+        min: 3,
+        minMessage: 'La description doit contenir au moins {{ limit }} caractères',
+        max: 500, 
+        maxMessage: 'La description ne peut pas dépasser {{ limit }} caractères')]
     private ?string $description = null;
 
     #[ORM\ManyToMany(targetEntity: Car::class, mappedBy: 'is_equipped')]
     private Collection $cars;
-
-    // #[ORM\ManyToOne(inversedBy: 'car_equipment')]
-    // private ?Car $car = null;
 
     public function __construct()
     {

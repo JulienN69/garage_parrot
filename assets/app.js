@@ -11,7 +11,6 @@
 // import "./js/car.js";
 
 import "./styles/app.scss";
+import "./js/car/filter";
 
 import "bootstrap";
-
-import "./js/car/filter";

@@ -118,17 +118,30 @@ resetButton.addEventListener("click", () => {
 
 // --------------------- Modal -------------------------
 
+let isModalOpen = false;
+
 function changeScriptInModal() {
   if (window.innerWidth <= 768) {
     const modalButton = document.querySelector(".modalButton");
+
     modalButton.addEventListener("click", () => {
-      carFilterForm.style.display = "block";
+      if (isModalOpen) {
+        carFilterForm.classList.remove("show");
+        carFilterForm.style.display = "none";
+        isModalOpen = false;
+      } else {
+        carFilterForm.classList.add("show");
+        carFilterForm.style.display = "block";
+        isModalOpen = true;
+      }
     });
-    carFilterForm.classList.add("collapse show");
+
+    carFilterForm.classList.add("collapse");
     carFilterForm.id = "collapseExample";
   } else {
-    carFilterForm.classList.remove("collapse", "show");
+    carFilterForm.classList.remove("collapse");
     carFilterForm.id = "form-car";
+    carFilterForm.style.display = "none";
   }
 }
 

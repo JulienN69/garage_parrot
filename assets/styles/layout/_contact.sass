@@ -2,6 +2,10 @@
     border-radius: 20px
     height: 60rem
     width: 70%
+    @media screen and (max-width: 992px)
+        width: auto
+        height: auto
+        flex-direction: initial
 
     &_name-div
         width: 45%
@@ -9,6 +13,13 @@
     &_button
         width: 20%
         height: 3rem
+        @media screen and (max-width: 992px)
+        width: auto
+        margin: 1rem
+    
+        p
+            font-size: 0.8rem
+            align-self: flex-end
 
 
 input[type="checkbox"] 

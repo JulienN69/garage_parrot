@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\SchedulesRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: SchedulesRepository::class)]
 class Schedules
@@ -14,12 +15,27 @@ class Schedules
     private ?int $id = null;
 
     #[ORM\Column(length: 50)]
+    #[Assert\Length(
+        min: 3,
+        minMessage: 'Le modèle doit contenir au moins {{ limit }} caractères',
+        max: 50, 
+        maxMessage: 'Le modèle ne peut pas dépasser {{ limit }} caractères')]
     private ?string $day = null;
 
     #[ORM\Column(length: 50, nullable: true)]
+    #[Assert\Length(
+        min: 3,
+        minMessage: 'Le modèle doit contenir au moins {{ limit }} caractères',
+        max: 50, 
+        maxMessage: 'Le modèle ne peut pas dépasser {{ limit }} caractères')]
     private ?string $schedules_morning = null;
 
     #[ORM\Column(length: 50, nullable: true)]
+    #[Assert\Length(
+        min: 3,
+        minMessage: 'Le modèle doit contenir au moins {{ limit }} caractères',
+        max: 50, 
+        maxMessage: 'Le modèle ne peut pas dépasser {{ limit }} caractères')]
     private ?string $schedules_afternoon = null;
 
     public function getId(): ?int

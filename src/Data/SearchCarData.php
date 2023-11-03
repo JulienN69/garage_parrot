@@ -11,16 +11,7 @@ class SearchCarData
     protected int $priceMin = 0;
     protected int $priceMax = 150000;
 
-    // public $categories = [];
-
     protected int $yearMax = 2023;
-
-    #[Assert\Length(
-        min: 4,
-        minMessage: 'Le modèel doit contenir 4 chiffres',
-        max: 4,
-        maxMessage: 'Le modèel doit contenir 4 chiffres',
-    )]
     protected int $yearMin = 1980;
 
     protected int $milesMax = 200000;

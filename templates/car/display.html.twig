@@ -11,7 +11,7 @@
     
   
 
-        <div id="carouselExampleControlsNoTouching" class="carousel slide col-8 bg-secondary p-0" data-bs-touch="false">
+        <div id="carouselExampleControlsNoTouching" class="carousel slide col-xl-8 col-12" data-bs-touch="false">
             <div class="carousel-inner">
             {% for imageName in imageNames %}
                 <div class="carousel-item border border-success border-3 p-0 {% if loop.first %} active{% endif %}">
@@ -30,8 +30,8 @@
         </div>
 
 
-        <div class="card col-4 m-0 p-0 border border-3" style="width: 22rem;">
-            <div class="card-body">
+        <div class="card col-xl-4 col-12 border border-3 features">
+            <div class="card-body features-card">
                 <h3 class="card-title">{{car.modele}}</h3>
                 <div class="border bg-success m-3"></div>
                 <h4 class="card-subtitle mb-2 text-body-secondary">{{car.mileage|number_format(0, '.', ' ')}} km</h4>
@@ -44,6 +44,25 @@
                     <li class="card-text text-italic text-muted">{{ equipment.equipmentTitle }}</li>
                     {% endfor %}
                 </ul>
+
+                <div class="border bg-success m-3"></div>
+
+                <a class="btn btn-success m-2" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+                    + de caractéristiques
+                </a>
+                <div class="collapse p-1" id="collapseExample">
+                    <ul>
+                        <li class="card-text features-card__li p-1">Énergie : <span class="features-card__span">{{ car.energy }}</span></li>
+                        <li class="card-text features-card__li p-1">Boîte de vitesses : <span class="features-card__span">{{ car.gearbox }}</span></li>
+                        <li class="card-text features-card__li p-1">Couleur : <span class="features-card__span">{{ car.color }}</span></li>
+                        <li class="card-text features-card__li p-1">Puissance : <span class="features-card__span">{{ car.power }} CH</span></li>
+                        <li class="card-text features-card__li p-1">Crit'Air : <span class="features-card__span">{{ car.thumnailCritair }}</span></li>
+                        <li class="card-text features-card__li p-1">Nombre de portes : <span class="features-card__span">{{ car.gatesNumber }}</span></li>
+                        <li class="card-text features-card__li p-1">Longueur : <span class="features-card__span">{{ car.length }} mêtres</span></li>
+                        <li class="card-text features-card__li p-1">Provenance : <span class="features-card__span">{{ car.origin }}</span></li>
+                    </ul>
+                </div>
+
                 <div class="border bg-success m-3"></div>
                 <div class="d-flex justify-content-evenly">
                     <a type="button" href={{ path('app_contact', {'getModele': car.modele }) }} class="btn btn-primary  text-uppercase">contact</a>

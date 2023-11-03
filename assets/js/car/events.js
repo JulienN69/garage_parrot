@@ -123,6 +123,7 @@ let isModalOpen = false;
 function changeScriptInModal() {
   if (window.innerWidth <= 768) {
     const modalButton = document.querySelector(".modalButton");
+    carFilterForm.style.display = "none";
 
     modalButton.addEventListener("click", () => {
       if (isModalOpen) {
@@ -141,7 +142,7 @@ function changeScriptInModal() {
   } else {
     carFilterForm.classList.remove("collapse");
     carFilterForm.id = "form-car";
-    carFilterForm.style.display = "none";
+    carFilterForm.style.display = "block";
   }
 }
 

@@ -5,14 +5,17 @@ namespace App\Controller\Admin;
 use App\Entity\Car;
 use App\Form\Type\CarImageType;
 use App\Uploader\CarDirectoryNamer;
+use EasyCorp\Bundle\EasyAdminBundle\Field\Field;
 use Vich\UploaderBundle\Form\Type\VichImageType;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\DateField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\NumberField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IntegerField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextareaField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\CollectionField;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 
@@ -32,11 +35,47 @@ class CarCrudController extends AbstractCrudController
         yield IntegerField::new('mileage')->setLabel('kilométrage');
         yield IntegerField::new('price')->setLabel('prix');
         yield DateField::new('dateCreation')->renderAsChoice()
-        ->setLabel('Date de création')
-        ->setFormTypeOptions([
-            'html5' => true,
-            'years' => range(1980, date('Y')),
-        ]);
+            ->setLabel('Date de création')
+            ->setFormTypeOptions([
+                'html5' => true,
+                'years' => range(1980, date('Y')),
+            ]);
+        yield IntegerField::new('power')->setLabel('puissance')->hideOnIndex();
+        yield IntegerField::new('gatesNumber')->setLabel('nombre de portes')->hideOnIndex();
+        yield Field::new('gatesNumber', 'nombre de portes')
+            ->setFormType(ChoiceType::class)
+            ->hideOnIndex()
+            ->setFormTypeOptions([
+                'choices' => [
+                    '3' => '3',
+                    '5' => '5',
+                ],
+            ]);
+        yield NumberField::new('length')->setLabel('longueur')->hideOnIndex();
+        yield Field::new('energy', 'énergie')
+            ->setFormType(ChoiceType::class)
+            ->hideOnIndex()
+            ->setFormTypeOptions([
+                'choices' => [
+                    'Essence' => 'essence',
+                    'Diesel' => 'diesel',
+                    'Électrique' => 'electrique',
+                ],
+            ]);
+        yield Field::new('thumnailCritair', 'vignette crit\'air')
+            ->setFormType(ChoiceType::class)
+            ->hideOnIndex()
+            ->setFormTypeOptions([
+                'choices' => [
+                    '1' => '1',
+                    '2' => '2',
+                    '3' => '3',
+                    '4' => '4',
+                    '5' => '5',
+                ],
+            ]);
+        yield TextField::new('color')->setLabel('couleur')->hideOnIndex();
+        yield TextField::new('origin')->setLabel('provenance')->hideOnIndex();
 
         yield TextareaField::new('imageFile')->setFormType(VichImageType::class)->hideOnIndex()->setLabel('photo principale');
         yield ImageField::new('imageName')

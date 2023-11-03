@@ -68,6 +68,44 @@ class Car
     #[ORM\OneToMany(mappedBy: 'represented_by', targetEntity: CarPictures::class, orphanRemoval: true, cascade: ['persist'])]
     private Collection $carPictures;
 
+    #[ORM\Column(length: 50, nullable: true)]
+    private ?string $energy = null;
+
+    #[ORM\Column(length: 50, nullable: true)]
+    private ?string $gearbox = null;
+
+    #[ORM\Column(length: 50, nullable: true)]
+    #[Assert\Length(
+        max: 30, 
+        maxMessage: 'La couleur ne peut pas dépasser {{ limit }} caractères')]
+    private ?string $color = null;
+
+    #[ORM\Column(nullable: true)]
+    #[Assert\LessThanOrEqual(value: 3000, message: 'La valeur doit être inférieure ou égale à 3000')]
+    #[Assert\Type(type: 'integer', message: 'La valeur doit être un nombre entier')]    
+    private ?int $power = null;
+
+    #[ORM\Column(nullable: true)]
+    #[Assert\Type(type: 'integer', message: 'La valeur doit être un nombre entier')]
+    private ?int $thumnailCritair = null;
+
+    #[ORM\Column(nullable: true)]
+    #[Assert\Type(type: 'integer', message: 'La valeur doit être un nombre entier')]
+    private ?int $gatesNumber = null;
+
+    #[ORM\Column(nullable: true)]
+    #[Assert\Regex(
+        pattern: '/^\d+([,.]\d{1,2})?$/',
+        message: 'La valeur doit être un nombre décimal avec un maximum de deux chiffres après la virgule.'
+    )]
+    private ?float $length = null;
+
+    #[ORM\Column(length: 50, nullable: true)]
+    #[Assert\Length(
+        max: 30, 
+        maxMessage: 'La provenance ne peut pas dépasser {{ limit }} caractères')]
+    private ?string $origin = null;
+
     public function __construct()
     {
         $this->is_equipped = new ArrayCollection();
@@ -223,6 +261,102 @@ class Car
                 $carPicture->setRepresentedBy(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getEnergy(): ?string
+    {
+        return $this->energy;
+    }
+
+    public function setEnergy(?string $energy): static
+    {
+        $this->energy = $energy;
+
+        return $this;
+    }
+
+    public function getGearbox(): ?string
+    {
+        return $this->gearbox;
+    }
+
+    public function setGearbox(?string $gearbox): static
+    {
+        $this->gearbox = $gearbox;
+
+        return $this;
+    }
+
+    public function getColor(): ?string
+    {
+        return $this->color;
+    }
+
+    public function setColor(?string $color): static
+    {
+        $this->color = $color;
+
+        return $this;
+    }
+
+    public function getPower(): ?int
+    {
+        return $this->power;
+    }
+
+    public function setPower(?int $power): static
+    {
+        $this->power = $power;
+
+        return $this;
+    }
+
+    public function getThumnailCritair(): ?int
+    {
+        return $this->thumnailCritair;
+    }
+
+    public function setThumnailCritair(?int $thumnailCritair): static
+    {
+        $this->thumnailCritair = $thumnailCritair;
+
+        return $this;
+    }
+
+    public function getGatesNumber(): ?int
+    {
+        return $this->gatesNumber;
+    }
+
+    public function setGatesNumber(?int $gatesNumber): static
+    {
+        $this->gatesNumber = $gatesNumber;
+
+        return $this;
+    }
+
+    public function getLength(): ?float
+    {
+        return $this->length;
+    }
+
+    public function setLength(?float $length): static
+    {
+        $this->length = $length;
+
+        return $this;
+    }
+
+    public function getOrigin(): ?string
+    {
+        return $this->origin;
+    }
+
+    public function setOrigin(?string $origin): static
+    {
+        $this->origin = $origin;
 
         return $this;
     }

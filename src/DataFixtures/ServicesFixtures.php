@@ -16,8 +16,7 @@ class ServicesFixtures extends Fixture
         $service1 = new Services();
         $service1->setServiceTitle('Révision simple')
             ->setPrice(150)
-            ->setDescription('La révision automobile consiste à examiner les différents composants de votre voiture grâce à des points de contrôle précis.
-            Elle doit être effectuée à une fréquence régulière afin de préserver votre véhicule et d\'en garantir son bon fonctionnement.');
+            ->setDescription('La révision automobile consiste à examiner les différents composants de votre voiture.');
 
         $manager->persist($service1);
 
@@ -26,8 +25,7 @@ class ServicesFixtures extends Fixture
         $service2 = new Services();
         $service2->setServiceTitle('Révision complète')
             ->setPrice(300)
-            ->setDescription('La révision automobile consiste à examiner les différents composants de votre voiture grâce à des points de contrôle précis.
-            Elle doit être effectuée à une fréquence régulière afin de préserver votre véhicule et d\'en garantir son bon fonctionnement.');
+            ->setDescription('La révision automobile consiste à examiner les différents composants de votre voiture.');
 
         $manager->persist($service2);
 
@@ -36,8 +34,7 @@ class ServicesFixtures extends Fixture
         $service3 = new Services();
         $service3->setServiceTitle('Changement des plaquettes de frein')
             ->setPrice(100)
-            ->setDescription('Les plaquettes de frein sont un élément clé du système de freinage de tout véhicule. Lorsque vous utilisez vos freins, les plaquettes exercent une pression hydraulique sur les disques de frein, ce qui ralentit votre voiture grâce à la friction et à la pression.
-            Nous déterminerons quelles plaquettes de frein doivent être remplacées et nous en installerons de nouvelles si nécessaire.');
+            ->setDescription('Les plaquettes de frein sont un élément clé du système de freinage de tout véhicule.');
 
         $manager->persist($service3);
 
@@ -46,8 +43,7 @@ class ServicesFixtures extends Fixture
         $service4 = new Services();
         $service4->setServiceTitle('Vidange')
             ->setPrice(60)
-            ->setDescription('La vidange de votre véhicule permet de vider l\'huile de moteur usée et de la remplacer par de l\'huile neuve.\
-            L\'huile de moteur sert à maintenir tous les rouages ​​internes de votre moteur en bon état de fonctionnement et à l\'abri des dommages.');
+            ->setDescription('La vidange de votre véhicule permet de vider.');
 
         $manager->persist($service4);
 
@@ -56,13 +52,7 @@ class ServicesFixtures extends Fixture
             $service5 = new Services();
             $service5->setServiceTitle('Kit de distribution')
                 ->setPrice(60)
-                ->setDescription('La rupture de la courroie de distribution peut être brutale si la 
-                périodicité de changement n\'est pas respectée et engendre systématiquement de graves 
-                dommages sur le moteur.
-                C\'est une pièce essentielle dans son fonctionnement puisqu\'elle assure la synchronisation 
-                entre la partie haute et basse du moteur.     
-                Pour cette raison, elle doit être remplacée de façon préventive selon les préconisations 
-                du constructeur.');
+                ->setDescription('La rupture de la courroie de distribution');
     
             $manager->persist($service5);
 

@@ -31,9 +31,9 @@ class CarPictures
     #[Vich\UploadableField(mapping: 'cars', fileNameProperty: 'picture_name', size: 'picture_size')]
     #[Assert\File(
         maxSize: '1920k',
-        mimeTypes: ['jpeg', 'png'],
+        mimeTypes: ['jpg', 'png'],
         maxSizeMessage :"Le fichier est trop volumineux. La taille maximale autorisée est de 1920 Ko.",
-        mimeTypesMessage:"Les formats autorisés sont jpeg et png.")]
+        mimeTypesMessage:"Les formats autorisés sont jpg et png.")]
     private ?File $picture_file = null;
 
     #[ORM\Column(nullable: true)]

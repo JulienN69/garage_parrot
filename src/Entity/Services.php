@@ -2,8 +2,8 @@
 
 namespace App\Entity;
 
-use App\Repository\ServicesRepository;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\ServicesRepository;
 use Symfony\Component\HttpFoundation\File\File;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -18,11 +18,6 @@ class Services
     private ?int $id = null;
 
     #[Vich\UploadableField(mapping: 'products', fileNameProperty: 'imageName', size: 'imageSize')]
-    #[Assert\File(
-        maxSize: '1920k',
-        mimeTypes: ['.jpg', '.png'],
-        maxSizeMessage :"Le fichier est trop volumineux. La taille maximale autorisée est de 1920 Ko.",
-        mimeTypesMessage:"Les formats autorisés sont jpg et png.")]
     private ?File $imageFile = null;
 
     #[ORM\Column(nullable: true)]
@@ -30,6 +25,9 @@ class Services
 
     #[ORM\Column(nullable: true)]
     private ?int $imageSize = null;
+
+    #[ORM\Column(nullable: true)]
+    private ?\DateTimeImmutable $updated_at = null;
 
     #[ORM\Column(length: 255)]
     #[Assert\Length(
@@ -103,16 +101,23 @@ class Services
     public function setImageFile(?File $imageFile = null): void
     {
         $this->imageFile = $imageFile;
+        if (null !== $imageFile) {
+            $this->updated_at = new \DateTimeImmutable();
+        }
 
     }
     public function getImageFile(): ?File
     {
         return $this->imageFile;
+        
+        
     }
 
     public function setImageName(?string $imageName): void
     {
         $this->imageName = $imageName;
+        
+        dump($imageName);
     }
 
     public function getImageName(): ?string
@@ -128,5 +133,18 @@ class Services
     public function getImageSize(): ?int
     {
         return $this->imageSize;
+    }
+
+
+    public function getUpdatedAt(): ?\DateTimeImmutable
+    {
+        return $this->updated_at;
+    }
+
+    public function setUpdatedAt(?\DateTimeImmutable $updated_at): static
+    {
+        $this->updated_at = $updated_at;
+
+        return $this;
     }
 }

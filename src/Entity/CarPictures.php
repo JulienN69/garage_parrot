@@ -6,7 +6,6 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\CarPicturesRepository;
 use Symfony\Component\HttpFoundation\File\File;
-use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: CarPicturesRepository::class)]
 #[Vich\Uploadable]
@@ -29,11 +28,6 @@ class CarPictures
 
 
     #[Vich\UploadableField(mapping: 'cars', fileNameProperty: 'picture_name', size: 'picture_size')]
-    #[Assert\File(
-        maxSize: '1920k',
-        mimeTypes: ['.jpg', '.png'],
-        maxSizeMessage :"Le fichier est trop volumineux. La taille maximale autorisée est de 1920 Ko.",
-        mimeTypesMessage:"Les formats autorisés sont jpg et png.")]
     private ?File $picture_file = null;
 
     #[ORM\Column(nullable: true)]

@@ -18,6 +18,8 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\CollectionField;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
+use Symfony\Component\Validator\Constraints as Assert;
+
 
 class CarCrudController extends AbstractCrudController
 {
@@ -77,7 +79,19 @@ class CarCrudController extends AbstractCrudController
         yield TextField::new('color')->setLabel('couleur')->hideOnIndex();
         yield TextField::new('origin')->setLabel('provenance')->hideOnIndex();
 
-        yield TextareaField::new('imageFile')->setFormType(VichImageType::class)->hideOnIndex()->setLabel('photo principale');
+        yield TextareaField::new('imageFile')->setFormType(VichImageType::class)
+            ->hideOnIndex()
+            ->setFormTypeOptions([
+                'constraints' => [
+                    new Assert\File([
+                        'maxSize' => '1920k',
+                        'mimeTypes' => ['image/jpeg', 'image/jpg', 'image/png'],
+                        'maxSizeMessage' => "Le fichier est trop volumineux. La taille maximale autorisée est de 1920 Ko.",
+                        'mimeTypesMessage' => "Les formats autorisés sont jpg et png."
+                    ])
+                ]
+            ])
+            ->setLabel('photo principale');
         yield ImageField::new('imageName')
         ->formatValue(function ($value, $entity) {
             if ($entity instanceof Car) {
@@ -93,7 +107,7 @@ class CarCrudController extends AbstractCrudController
                 }
             }
     
-            return '/images/autres';
+            return '/images/voiture.jpg';
         })
             ->setBasePath('/images/cars/')
             ->hideOnForm()

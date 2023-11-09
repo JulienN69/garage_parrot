@@ -49,11 +49,6 @@ class Car
     private Collection $is_equipped;
 
     #[Vich\UploadableField(mapping: 'cars', fileNameProperty: 'imageName', size: 'imageSize')]
-    #[Assert\File(
-        maxSize: '1920k',
-        mimeTypes: ['jpeg', 'png'],
-        maxSizeMessage :"Le fichier est trop volumineux. La taille maximale autorisée est de 1920 Ko.",
-        mimeTypesMessage:"Les formats autorisés sont jpeg et png.")]
     private ?File $imageFile = null;
 
     #[ORM\Column(nullable: true)]
@@ -256,7 +251,7 @@ class Car
     public function removeCarPicture(CarPictures $carPicture): static
     {
         if ($this->carPictures->removeElement($carPicture)) {
-            // set the owning side to null (unless already changed)
+
             if ($carPicture->getRepresentedBy() === $this) {
                 $carPicture->setRepresentedBy(null);
             }

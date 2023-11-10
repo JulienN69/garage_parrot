@@ -1,4 +1,5 @@
 import { updateBackground, gapSlider } from "./functions_car";
+console.log("event load");
 
 window.onload = function () {
   inputPrice1.value = 0;

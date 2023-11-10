@@ -48,7 +48,7 @@ app_reviews_show:
 
 app_contact:
   path: /contact
-  methods: ["GET"]
+  methods: ["GET", "POST"]
   requirements:
     getModele: '\w+'
   controller: App\Controller\ContactController::index

@@ -1,3 +1,4 @@
+console.log("filter load");
 const filtersForm = document.querySelector(".js-filter-form");
 
 document.querySelectorAll("input").forEach((input) => {
@@ -21,7 +22,6 @@ document.querySelectorAll("input").forEach((input) => {
         return response.json();
       })
       .then((data) => {
-        console.log(data);
         const content = document.querySelector(".js-filter-content");
         content.innerHTML = data.content;
       });

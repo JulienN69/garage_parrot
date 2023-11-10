@@ -35,8 +35,12 @@
 
        
         <div class="d-flex justify-content-start">
-            <input type="checkbox" name="checkbox-contact" class="me-2">
-            <label for="checkbox-contact" class="fs-6 fw-lighter">En cochant cette case, j'accepte les conditions particulières ci-dessous**</label>
+            {{ form_row(form.checkbox, {
+                'label': 'En cochant cette case, j\'accepte les conditions particulières ci-dessous**',
+                'row_attr': {'class': 'form-checkbox-row'},
+                'attr': {'class': 'form-checkbox-input'}
+    }) }}
+
         </div>
         <div class="d-flex justify-content-center">
             <button type="submit" class="btn btn-primary ft-2 text-uppercase form-contact_button">Envoyer</button>        

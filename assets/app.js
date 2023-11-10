@@ -7,10 +7,10 @@
 
 // any CSS you import will output into a single css file (app.css in this case)
 
-// import "./js/main.js";
-// import "./js/car.js";
-
 import "./styles/app.scss";
-import "./js/car/filter";
 
 import "bootstrap";
+
+if (window.location.pathname.includes("/car")) {
+  import("./js/car/filter");
+}

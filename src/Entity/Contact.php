@@ -41,7 +41,8 @@ class Contact
     #[ORM\Column(length: 255)]
     #[Assert\NotBlank(message:'veuillez saisir un numéro de téléphone')]
     #[Assert\Regex(
-        pattern : '^0[1-9]([ .-]?[0-9]{2}){4}$^',
+        pattern : '/^(?:\d[ ]?){10}$/',
+        match : true,
         message : "Le numéro de téléphone n'est pas valide")]
     private ?string $phone = null;
 
@@ -62,6 +63,9 @@ class Contact
         max: 1000, 
         maxMessage: 'Le message ne peut pas dépasser {{ limit }} caractères')]
     private ?string $message_content = null;
+
+    #[Assert\NotBlank(message:'veuillez cocher la case')]
+    private ?bool $checkbox = null;
 
     public function getId(): ?int
     {
@@ -136,6 +140,26 @@ class Contact
     public function setMessageContent(string $message_content): static
     {
         $this->message_content = $message_content;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of checkbox
+     */ 
+    public function getCheckbox():bool
+    {
+        return $this->checkbox;
+    }
+
+    /**
+     * Set the value of checkbox
+     *
+     * @return  self
+     */ 
+    public function setCheckbox(?bool $checkbox):static
+    {
+        $this->checkbox = $checkbox;
 
         return $this;
     }

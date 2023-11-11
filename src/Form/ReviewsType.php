@@ -29,12 +29,11 @@ class ReviewsType extends AbstractType
         ->add('note', ChoiceType::class, [
             'label' => 'Note',
             'choices' => [
-                '0' => 1,
-                '1' => 2,
-                '2' => 3,
-                '3' => 4,
-                '4' => 5,
-                '5' => 6,
+                '1' => 1,
+                '2' => 2,
+                '3' => 3,
+                '4' => 4,
+                '5' => 5,
             ],
             'attr' => ['class' => 'form-control']
         ]);

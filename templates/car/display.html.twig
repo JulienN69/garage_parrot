@@ -53,7 +53,6 @@
                 <div class="collapse p-1" id="collapseExample">
                     <ul>
                         <li class="card-text features-card__li p-1">Énergie : <span class="features-card__span">{{ car.energy }}</span></li>
-                        <li class="card-text features-card__li p-1">Boîte de vitesses : <span class="features-card__span">{{ car.gearbox }}</span></li>
                         <li class="card-text features-card__li p-1">Couleur : <span class="features-card__span">{{ car.color }}</span></li>
                         <li class="card-text features-card__li p-1">Puissance : <span class="features-card__span">{{ car.power }} CH</span></li>
                         <li class="card-text features-card__li p-1">Crit'Air : <span class="features-card__span">{{ car.thumnailCritair }}</span></li>
@@ -66,7 +65,17 @@
                 <div class="border bg-success m-3"></div>
                 <div class="d-flex justify-content-evenly">
                     <a type="button" href={{ path('app_contact', {'getModele': car.modele }) }} class="btn btn-primary  text-uppercase">contact</a>
-                    <button type="button" href="#" class="btn btn-primary text-uppercase">Téléphone</button>                
+                    {# <button type="button" href="#" class="btn btn-primary text-uppercase">Téléphone</button>                 #}
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-primary dropdown-toggle text-uppercase" data-bs-toggle="dropdown" aria-expanded="false">
+                            Téléphone
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#">Mr dupond</a></li>
+                            <li><a class="dropdown-item" href="#">06 12 13 14 15</a></li>
+                        </ul>
+                    </div>
+
                 </div>
             </div>
         </div>

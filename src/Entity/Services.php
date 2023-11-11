@@ -116,8 +116,6 @@ class Services
     public function setImageName(?string $imageName): void
     {
         $this->imageName = $imageName;
-        
-        dump($imageName);
     }
 
     public function getImageName(): ?string

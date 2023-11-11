@@ -44,7 +44,7 @@ class ContactController extends AbstractController
             $entityManager->persist($contact);
             $entityManager->flush();
             $this->addFlash('success', 'formulaire envoyé');
-            return $this->redirectToRoute('app_contact');
+            return $this->redirectToRoute('app_home');
         }
 
         return $this->render('contact/index.html.twig', [

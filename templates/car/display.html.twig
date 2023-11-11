@@ -65,7 +65,17 @@
                 <div class="border bg-success m-3"></div>
                 <div class="d-flex justify-content-evenly">
                     <a type="button" href={{ path('app_contact', {'getModele': car.modele }) }} class="btn btn-primary  text-uppercase">contact</a>
-                    <button type="button" href="#" class="btn btn-primary text-uppercase">Téléphone</button>                
+                    {# <button type="button" href="#" class="btn btn-primary text-uppercase">Téléphone</button>                 #}
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-primary dropdown-toggle text-uppercase" data-bs-toggle="dropdown" aria-expanded="false">
+                            Téléphone
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#">Mr dupond</a></li>
+                            <li><a class="dropdown-item" href="#">06 12 13 14 15</a></li>
+                        </ul>
+                    </div>
+
                 </div>
             </div>
         </div>

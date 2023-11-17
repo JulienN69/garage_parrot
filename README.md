@@ -13,12 +13,12 @@ Projet fictif de Garage Automobile pour un certain Vincent Parrot. Cette applica
 <h3>EXÉCUTION EN LOCAL :</h3>
 
 Faites un git clone de ce projet, ou téléchargez le zip.
-Allez dans le dossier : garage_parrot
+Allez dans le dossier : garage_parrot<br>
 Pour installer les dépendances exécutez la commande : <i>composer install</i>
 
 <h3>CONNEXION A LA BASE DE DONNÉES :</h3>
 
-Ouvrez le fichier .env.local et configurez la ligne `DATABASE_URL` avec vos paramètres MySQL (en remplacant id et mdp par votre identifiant et mot de passe) : DATABASE_URL="mysql://id:mdp@127.0.0.1:8889/g-parrot?serverVersion=8.0.32&charset=utf8mb4"  
+A la racine du projet créez un fichier .env.local et configurez une ligne `DATABASE_URL` avec vos paramètres MySQL (en remplacant id et mdp par votre identifiant et mot de passe) : DATABASE_URL="mysql://id:mdp@127.0.0.1:8889/g-parrot?serverVersion=8.0.32&charset=utf8mb4"  
 
 <h3>CRÉATION DES TABLES :</h3>
 
